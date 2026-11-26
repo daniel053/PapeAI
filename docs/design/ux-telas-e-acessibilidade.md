@@ -4,8 +4,8 @@
 ```text
 Site institucional (indexável)          App (app.<dominio>, nunca indexado)
 ├─ Início                               ├─ Boas-vindas
-├─ Como funciona                        ├─ Entrar / Criar conta (Google · e-mail com código)
-├─ Segurança e transparência            ├─ Termos + Privacidade + 18+ (primeiro acesso)
+├─ Como funciona                        ├─ Entrar / Criar conta (Google · e-mail e senha)   
+├─ Segurança e transparência            ├─ Termos + Privacidade (primeiro acesso)    
 ├─ Perguntas frequentes                 ├─ "Sua chave, seu controle" (educativa) → Colar chave → Validação
 ├─ Privacidade · Termos                 ├─ Onboarding: idioma nativo → idioma-alvo → objetivos → detalhes
 └─ Solicitar exclusão de conta          │             → meta diária → sotaque → professor → legendas

@@ -1,5 +1,5 @@
 # ADR-0009 — Conteúdo curado no repositório + geração por IA validada
-- **Status:** Proposta
+- **Status:** Aceita (2026-11-26)
 - **Data:** 2026-11-26
 - **Decisor:** dono do projeto · **Proposta por:** IA
 - **Requisitos relacionados:** TRI-01..06, OBJ-04, TUT-13, A-14
@@ -14,7 +14,7 @@ A trilha vai do Pre-A1 ao C2 e é personalizada por objetivo. Gerar tudo com IA 
 | Tudo curado à mão | Qualidade | Inviável em escala |
 | **Híbrido** | Esqueleto confiável + variedade e personalização | Exige validador e processo de curadoria |
 
-## Decisão (proposta)
+## Decisão
 1. **Curado e versionado em `content/`:** programa por nível, listas de vocabulário, banco de perguntas do nivelamento, erros típicos de brasileiros, pacotes temáticos (com fatos culturais com fonte), lições de reserva.
 2. **Gerado pela IA dentro de restrições:** atividades das lições, a partir de um `LessonSpec` montado pelo código, com **validador** antes de exibir e cache local.
 3. **Status de curadoria** nos pacotes (`draft_ai` → `reviewed` → `published`); só os revisados aparecem para usuários.

@@ -65,4 +65,11 @@ Processo completo: [`docs/processo/fluxo-de-trabalho-vibe-coding.md`](docs/proce
 | F12 | Evolução: premium, novos idiomas e iOS | M5 — Evolução contínua |
 
 ## Licença
-A definir — proposta em [`docs/decisoes/ADR-0005-licenca-codigo-conteudo-e-marca.md`](docs/decisoes/ADR-0005-licenca-codigo-conteudo-e-marca.md).
+| O quê | Licença |
+|---|---|
+| Código | [GPL-3.0-or-later](LICENSE) |
+| Conteúdo pedagógico (`content/`) | CC BY-SA 4.0 |
+| Documentação (`docs/`) | CC BY 4.0 |
+| Nome "PapeAI", logo e mascote | Todos os direitos reservados |
+
+**Aviso de marca:** o código é livre, mas o nome "PapeAI", o logo e o mascote (macaco-sagui) não são. Forks devem usar nome e identidade visual próprios. Detalhes em [ADR-0005](docs/decisoes/ADR-0005-licenca-codigo-conteudo-e-marca.md).

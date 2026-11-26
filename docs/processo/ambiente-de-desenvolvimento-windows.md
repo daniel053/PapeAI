@@ -2,7 +2,9 @@
 
 > Comandos em **PowerShell**. IDs de pacotes do `winget` e comandos de instalação: **confirmar com `winget search <nome>` e na documentação oficial** antes de rodar (regra anti-alucinação).
 
-## ⚠️ Primeiro: tirar o repositório do OneDrive (Q-12)
+## ⚠️ OneDrive (Q-12)
+> **Decisão do dono (2026-11-26):** a sincronização do OneDrive está **desativada** nesta máquina, então o repositório fica onde está (risco aceito por escrito). Os problemas abaixo só voltam se a sincronização for reativada — nesse caso, mover o repositório antes.
+
 Hoje o projeto está em `C:\Users\dermi\OneDrive\Documents\repositorios\PapeAI`. Problemas:
 1. O OneDrive tenta sincronizar `node_modules` (dezenas de milhares de arquivos) → lentidão e conflitos.
 2. Arquivos travados durante builds/instalações causam erros aleatórios.
@@ -21,10 +23,10 @@ Depois, abrir uma **nova sessão** do Claude Code em `C:\dev\PapeAI` e dizer "co
 | Ferramenta | Para quê | Instalação sugerida | Verificar |
 |---|---|---|---|
 | Git | Versionamento | `winget install --id Git.Git -e` | `git --version` |
-| Node.js **LTS vigente** | Rodar ferramentas JS | `winget install --id OpenJS.NodeJS.LTS -e` (confirmar a LTS atual em nodejs.org) | `node -v` |
-| pnpm | Gerenciador de pacotes | via Corepack (vem com o Node): `corepack enable` (confirmar o comando recomendado na doc do pnpm) | `pnpm -v` |
+| Node.js **LTS vigente** | Rodar ferramentas JS | Máquina do dono: **nvm-windows** (várias versões convivem): `nvm install 26.13.1` e depois `nvm use 26.13.1`. ⚠️ `nvm use` troca a versão para o PC inteiro; para os projetos antigos, `nvm use 11.15.0`. Sem nvm: `winget install --id OpenJS.NodeJS.LTS -e` (confirmar a LTS atual em nodejs.org) | `node -v` |
+| pnpm | Gerenciador de pacotes | `npm install -g pnpm@<versão>` (o Node 26 não traz mais o Corepack; verificado: a pasta `corepack` existe no Node 24 e não existe no 26). Instalações globais ficam separadas por versão do Node no nvm-windows | `pnpm -v` |
 | VS Code | Editor | `winget install --id Microsoft.VisualStudioCode -e` | abre |
-| GitHub CLI | PRs, issues | `winget install --id GitHub.cli -e` | `gh --version` |
+| GitHub CLI | PRs, issues | `winget install --id GitHub.cli -e` (instalado em 2026-11-26: **2.106.0**, hash do instalador verificado pelo winget) | `gh --version` |
 
 Extensões do VS Code: ESLint, Prettier, Tailwind CSS IntelliSense, Playwright Test, EditorConfig.
 

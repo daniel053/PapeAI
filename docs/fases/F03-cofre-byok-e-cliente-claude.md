@@ -38,6 +38,7 @@ O usuário entende o que é a chave, cola, valida **sem gastar tokens**, a chave
 - [ ] `baseURL` fixo; `maxRetries` padrão (2); timeouts por rota.
 - [ ] `config/models.ts` + checagem de disponibilidade via `/v1/models`.
 - [ ] Tratamento de `stop_reason` (`refusal`, `max_tokens`) e de erros tipados (tabela em `../ia/arquitetura-do-tutor.md`).
+- [ ] **Saldo de créditos insuficiente** (pedido do dono): mensagem clara na tela ("sua chave está sem créditos na Claude Console") com link para a página de cobrança da Console; nunca falha silenciosa. Formato exato do erro confirmado na doc oficial da API.
 - [ ] Avaliar e decidir (registrar na ADR-0008) o uso do fallback no servidor para Sonnet/Opus.
 
 ### D. Telas

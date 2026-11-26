@@ -16,6 +16,7 @@
 
 ## Servidor (Postgres / Supabase)
 _Nenhuma migração aplicada ainda._ Primeira versão planejada: **v0** na F02 (`profiles`, `learning_profiles`, `languages`, `language_variants`, `notification_preferences`, `consent_records`, gatilhos e funções privadas).
+- 2026-11-26 (planejamento, F00): removida do v0 planejado a coluna `profiles.age_confirmed_at` — a maioridade passa a ser só cláusula dos Termos (ADR-0010). Nenhuma migração afetada (ainda não existem).
 
 ## Local (IndexedDB)
 _Nenhuma versão criada ainda._ Primeira versão planejada: **v1** na F03 (cofre separado) e F04 (conversas, uso de tokens).

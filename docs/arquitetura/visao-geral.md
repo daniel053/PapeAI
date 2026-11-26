@@ -77,7 +77,7 @@ sequenceDiagram
 1. Usuário toca "Entrar com Google" → redirecionamento OAuth com PKCE para o Google via Supabase Auth.
 2. Volta para `app.<domínio>/auth/callback` (URL exata na allowlist do Supabase).
 3. Supabase emite JWT de acesso (curto) + refresh token (rotacionado).
-4. Primeiro login: um gatilho no banco cria `profiles`; o app mostra termos, privacidade e confirmação 18+.
+4. Primeiro login: um gatilho no banco cria `profiles`; o app mostra termos e privacidade.
 
 ### 3. Sincronização de progresso
 1. O app grava primeiro localmente (IndexedDB) e coloca a mudança numa fila.

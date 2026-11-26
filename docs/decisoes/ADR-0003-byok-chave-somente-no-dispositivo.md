@@ -1,5 +1,5 @@
 # ADR-0003 — BYOK: chave somente no dispositivo, chamada direta ao provedor
-- **Status:** Proposta
+- **Status:** Aceita (2026-11-26)
 - **Data:** 2026-11-26
 - **Decisor:** dono do projeto · **Proposta por:** IA
 - **Requisitos relacionados:** PRD-02, BYOK-01..16, PRIV-10, SEG-03, SEG-07
@@ -16,7 +16,7 @@ Fatos verificados (2026-11-26): a Anthropic não permite que apps de terceiros u
 | B. Proxy no nosso servidor guardando chaves cifradas | Esconde a chave do navegador | **Nosso servidor veria as chaves** (viola a promessa), custo, responsabilidade enorme |
 | C. Login com assinatura do Claude (OAuth do claude.ai) | Seria o sonho da ideia original | **Não permitido** pelas regras da Anthropic para terceiros |
 
-## Decisão (proposta)
+## Decisão
 **Opção A**, com: cofre (`core/vault`) como único guardião, allowlist de domínio+caminho, CSP `connect-src`, testes automatizados de rede, tela educativa explicando assinatura × chave, e créditos de API de planos com link oficial.
 
 ## Consequências

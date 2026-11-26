@@ -34,8 +34,8 @@
 | Testes unitários | Vitest + Testing Library | Jest | MIT | Integra com Vite | F01 |
 | Testes E2E | Playwright (+ @axe-core/playwright) | Cypress | Apache-2.0 | Intercepta rede (prova que a chave não vaza) | F01 |
 | Lint/format | ESLint (flat config) + typescript-eslint + Prettier | Biome | MIT | Regras de fronteira de módulos | F01 |
-| Gerenciador de pacotes | pnpm | npm, yarn | MIT | Rápido, lockfile rígido, bloqueia scripts de instalação de dependências por padrão (confirmar na F01) | F00 |
-| Runtime | Node.js LTS ativo | — | MIT | Verificar a LTS vigente em nodejs.org na F00 | F00 |
+| Gerenciador de pacotes | pnpm | npm, yarn | MIT | Rápido, lockfile rígido, bloqueia scripts de instalação de dependências por padrão (confirmar na F01) | **12.23.0** (`npm view pnpm dist-tags` → `latest`, 2026-11-26); instalado com `npm i -g pnpm@12.23.0` |
+| Runtime | Node.js LTS ativo | — | MIT | LTS ativo em 2026-11-26 (fonte: `https://nodejs.org/dist/index.json` → v26.13.1 "Lithium", de 2026-11-10; a linha 24 está em manutenção) | **26.13.1**, fixado em `.nvmrc`; gerenciado com nvm-windows 1.2.2 |
 | CI | GitHub Actions | — | — | Gratuito para repositório público | F01 |
 
 ## O que **não** vamos usar (e por quê)
@@ -53,7 +53,7 @@ Antes de instalar qualquer pacote, a IA preenche (no PR ou no doc da fase):
 1. **Nome exato** e link oficial (npm + repositório).
 2. **Existe mesmo?** `npm view <nome> name version repository license` — saída colada como evidência.
 3. **Reputação:** downloads semanais, data do último release, mantenedores, issues de segurança abertas.
-4. **Licença** compatível (MIT/Apache/BSD/ISC preferidas; GPL exige análise).
+4. **Licença** compatível (MIT/Apache-2.0/BSD/ISC/GPL-3.0 são compatíveis com o código GPL do projeto — ADR-0005; evitar licenças incompatíveis com GPL-3.0, ex.: GPL-2.0-only).
 5. **Necessidade:** por que não dá para fazer com o que já temos? Tamanho no bundle.
 6. **Aprovação** do dono para dependências de runtime novas.
 

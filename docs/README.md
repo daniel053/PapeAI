@@ -45,7 +45,7 @@
 |---|---|
 | [principios-e-modelo-de-ameacas.md](seguranca/principios-e-modelo-de-ameacas.md) | Ativos, ameaças, mitigações, princípios. |
 | [cofre-da-chave-api.md](seguranca/cofre-da-chave-api.md) | Especificação do cofre BYOK (web e nativo). |
-| [autenticacao-e-sessoes.md](seguranca/autenticacao-e-sessoes.md) | Login Google, e-mail com código, tokens de sessão (JWT). |
+| [autenticacao-e-sessoes.md](seguranca/autenticacao-e-sessoes.md) | Login Google, e-mail e senha, tokens de sessão (JWT). |
 | [seguranca-web-headers-csp-robots.md](seguranca/seguranca-web-headers-csp-robots.md) | Cabeçalhos, CSP, robots.txt, security.txt, XSS. |
 | [supabase-rls-e-backend.md](seguranca/supabase-rls-e-backend.md) | RLS, grants por coluna, schema privado, Edge Functions. |
 | [privacidade-lgpd.md](seguranca/privacidade-lgpd.md) | LGPD: inventário de dados, bases legais, direitos, retenção. |

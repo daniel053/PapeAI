@@ -43,7 +43,6 @@ Cuidados:
 | Consentimento | Quando é pedido | Padrão |
 |---|---|---|
 | Termos de uso + Política de privacidade | Primeiro acesso | Obrigatório para usar |
-| Declaração 18+ | Primeiro acesso | Obrigatório para usar |
 | E-mails de engajamento (por tipo) | Onboarding/Configurações | **Desligado** |
 | Novidades do produto | Configurações | **Desligado** |
 | Modo sem filtro | Ao ativar | **Desligado** |

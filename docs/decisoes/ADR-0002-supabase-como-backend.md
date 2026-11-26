@@ -1,5 +1,5 @@
 # ADR-0002 — Supabase como backend (região São Paulo)
-- **Status:** Proposta
+- **Status:** Aceita (2026-11-26)
 - **Data:** 2026-11-26
 - **Decisor:** dono do projeto · **Proposta por:** IA
 - **Requisitos relacionados:** CON-01..13, SEG-01, SEG-11, PRIV-07, RNF-01
@@ -15,7 +15,7 @@ Precisamos de login (incluindo Google), banco para progresso, funções de servi
 | C. Appwrite Cloud | Código aberto | Ecossistema menor |
 | D. PocketBase/servidor próprio | Controle total | Precisa de servidor (custo e manutenção) |
 
-## Decisão (proposta)
+## Decisão
 **Supabase**, com dois projetos (dev e prod) e o de produção na região **São Paulo**. O site/app é hospedado em outro serviço (o Supabase não hospeda o frontend — ADR-0004).
 
 **Resposta à dúvida do dono:** sim, funciona com mobile — o mesmo cliente `supabase-js` roda no app Capacitor; o APK sai do Android Studio (F10), independentemente do Supabase.

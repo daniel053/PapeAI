@@ -3,16 +3,16 @@
 > **Arquivo vivo.** A IA lê este arquivo primeiro em toda sessão e o atualiza no fim.
 > É a fonte de verdade sobre "onde estamos" — nunca a memória da conversa.
 
-**Última atualização:** 2026-11-26 — Sessão 01
+**Última atualização:** 2026-11-26 — Sessão 02
 
 ## Onde estamos
 - **Fase atual:** F00 — Fundação e decisões
-- **Status da fase:** 🚧 Em andamento — documentação de planejamento criada; aguardando revisão do dono.
+- **Status da fase:** 🚧 Em andamento — decisões fechadas (perguntas respondidas, ADRs aceitas), ambiente instalado, arquivos do repositório criados. Faltam: MFA nas contas, chave de dev na Console, confirmar repositório público/privado, commit autorizado.
 - **Próximo passo (dono):**
-  1. Ler `docs/01-VISAO-DO-PRODUTO.md` (5 min) e `docs/fases/README.md` (5 min).
-  2. Responder as perguntas marcadas **[bloqueia F00]** em `docs/04-PERGUNTAS-EM-ABERTO.md` (pode responder no chat).
-  3. Revisar as ADRs propostas em `docs/decisoes/` e dizer quais aceita.
-- **Próximo passo (IA):** com as respostas, marcar ADRs como "Aceita", ajustar documentos afetados e conduzir os passos práticos da F00 (contas, MFA, ambiente, repositório).
+  1. Autorizar o commit das mudanças da sessão 02.
+  2. Ativar MFA no GitHub, Google e Claude Console; criar organização e chave de dev com limite de gasto baixo (sem colar nada no chat).
+  3. Fazer `gh auth login` e confirmar se o repositório é público ou privado.
+- **Próximo passo (IA):** orientar o MFA, ativar recursos de segurança do GitHub (secret scanning, push protection, Dependabot) com autorização, registrar evidências e preparar o portão F00.
 
 ## Portões de fase
 | Fase | Nome | Status | Aprovada em | Tag git |
@@ -36,20 +36,20 @@ Legenda: ⏳ não iniciada · 🚧 em andamento · 🔎 em revisão (portão) ·
 ## Decisões (ADRs)
 | ADR | Título | Status |
 |---|---|---|
-| 0001 | Web primeiro (PWA) + Capacitor para mobile | Proposta |
-| 0002 | Supabase como backend (região São Paulo) | Proposta |
-| 0003 | BYOK: chave somente no dispositivo, chamada direta ao provedor | Proposta |
-| 0004 | Hospedagem Cloudflare e origens separadas (site x app) | Proposta |
-| 0005 | Licença do código, do conteúdo e da marca | Proposta (escolha do dono) |
-| 0006 | Login com Google + e-mail com código (sem senha) | Proposta |
+| 0001 | Web primeiro (PWA) + Capacitor para mobile | ✅ Aceita |
+| 0002 | Supabase como backend (região São Paulo) | ✅ Aceita |
+| 0003 | BYOK: chave somente no dispositivo, chamada direta ao provedor | ✅ Aceita |
+| 0004 | Hospedagem Cloudflare e origens separadas (site x app) | ✅ Aceita |
+| 0005 | Licença do código, do conteúdo e da marca | ✅ Aceita (GPL-3.0-or-later) |
+| 0006 | Login com Google + e-mail e senha | ✅ Aceita (reescrita a pedido do dono) |
 | 0007 | Voz local primeiro, provedores em nuvem opcionais via BYOK | Proposta (final após spike da F07) |
 | 0008 | Modelos Claude e perfis de qualidade | Proposta (padrão decidido no portão F04) |
-| 0009 | Conteúdo curado no repositório + geração por IA validada | Proposta |
-| 0010 | Idade mínima de 18 anos | Proposta |
-| 0011 | Dados sensíveis ficam no aparelho por padrão | Proposta |
+| 0009 | Conteúdo curado no repositório + geração por IA validada | ✅ Aceita |
+| 0010 | Maioridade só nos Termos (sem perguntar idade) | ✅ Aceita com ajuste |
+| 0011 | Dados sensíveis ficam no aparelho por padrão | ✅ Aceita |
 
 ## Perguntas que bloqueiam o portão F00
-Q-01 (nome), Q-02 (mascote), Q-03 (seu plano Claude), Q-04 (orçamento mínimo), Q-05 (stack), Q-06 (login), Q-07 (idade), Q-08 (licença), Q-12 (repositório fora do OneDrive). Detalhes em `docs/04-PERGUNTAS-EM-ABERTO.md`.
+✅ Respondidas: Q-01 (PapeAI), Q-02 (macaco-sagui), Q-03 (Pro, sem créditos de API), Q-04 (créditos sob demanda), Q-06 (Google + e-mail e senha), Q-07 (sem perguntar idade), Q-08 (GPL-3.0-or-later), Q-12 (fica no OneDrive, sync desativado), Q-05 (stack web + Capacitor aprovada).
 
 ## Bloqueios atuais
 - Nenhum bloqueio técnico. Aguardando decisões do dono.
@@ -67,14 +67,17 @@ Q-01 (nome), Q-02 (mascote), Q-03 (seu plano Claude), Q-04 (orçamento mínimo),
 - Sessão 01: criada a estrutura de documentação — **76 arquivos Markdown, ~6.000 linhas** (`CLAUDE.md`, `README.md`, `docs/` com processo, arquitetura, dados, segurança, IA, pedagogia, voz, design, 13 fases e 11 ADRs).
 - Verificação automática: nenhum link Markdown quebrado; os únicos caminhos ainda inexistentes são arquivos previstos para fases futuras (`SECURITY.md`, prompts `*.v1.md`, `CONTRIBUTING.md` etc.).
 - Fatos externos verificados na web em 2026-11-26 (fontes registradas nos docs): política de assinatura x chave de API da Anthropic, limites gratuitos de Supabase e Resend, regra dos 12 testadores da Google Play, verificação de desenvolvedor Android no Brasil.
-- Nenhum código escrito. Nenhuma conta criada. **Nada commitado** (aguardando autorização).
+- Nenhum código escrito. Nenhuma conta criada. (Correção na sessão 02: a documentação já estava no commit `beda0a5 initial`.)
+- Sessão 02: ambiente instalado — Git 2.56.0, Node 26.13.1 (LTS ativo, via nvm-windows; 24.14.0 e 11.15.0 mantidos), pnpm 12.23.0, GitHub CLI 2.106.0; `.nvmrc` criado; respostas Q-01/02/03 registradas. Mudanças da sessão 02 ainda não commitadas.
 
 ## Histórico de sessões
 | # | Data | Fase | Resumo |
 |---|---|---|---|
 | 01 | 2026-11-26 | F00 | Documentação de planejamento criada a partir da ideia original; perguntas e ADRs propostas. |
+| 02 | 2026-11-26 | F00 | Ambiente (Node 26, pnpm, gh) instalado; todas as perguntas bloqueantes respondidas; ADRs 0001–0006 e 0009–0011 aceitas (0007 e 0008 seguem propostas até F07/F04); LICENSE (GPL-3.0), .gitignore, .gitattributes, .editorconfig criados. |
 
 ## Notas para a próxima sessão da IA
 - Não escrever código antes do portão F00.
 - Começar pelas respostas às perguntas bloqueantes; cada resposta atualiza a ADR correspondente e os docs afetados (listados na própria ADR).
-- Se o dono quiser mover o repositório para fora do OneDrive (Q-12), fazer isso **antes** da F01.
+- Q-12: repositório fica no OneDrive (sincronização desativada pelo dono — risco aceito). Se a sincronização for reativada, mover antes de criar `.env.local` ou `node_modules`.
+- Avisar o dono antes de precisar de créditos de API; erro de saldo insuficiente deve aparecer claro na tela (F03).

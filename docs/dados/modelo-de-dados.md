@@ -76,13 +76,12 @@ Acesso: `grant select ... to authenticated`; sem insert/update/delete para usuá
 | `native_language` | text | ISO 639, default `pt` | Idioma das explicações |
 | `timezone` | text | IANA, default `America/Sao_Paulo` | Lembretes e "dia" de estudo |
 | `quality_profile` | text | `economy` \| `balanced` \| `max`, default definido na F04 | Perfil de modelo (ADR-0008) |
-| `age_confirmed_at` | timestamptz null | | Autodeclaração 18+ |
 | `onboarding_completed_at` | timestamptz null | | |
 | `active_learning_profile_id` | uuid null | FK composta `(active_learning_profile_id, id)` → `learning_profiles(id, user_id)` | Idioma em estudo |
 | `created_at` / `updated_at` | timestamptz | default `now()` / gatilho | |
 
 Criação: gatilho `after insert on auth.users` chama `private.handle_new_user()` (security definer, `search_path = ''`), que cria `profiles` e `notification_preferences`.
-Grants: `select` na tabela; `update` **só nas colunas** `display_name, ui_locale, native_language, timezone, quality_profile, age_confirmed_at, onboarding_completed_at, active_learning_profile_id`.
+Grants: `select` na tabela; `update` **só nas colunas** `display_name, ui_locale, native_language, timezone, quality_profile, onboarding_completed_at, active_learning_profile_id`.
 
 ### `public.learning_profiles` (um por idioma-alvo) — F02/F05
 | Coluna | Tipo | Regras | Descrição |

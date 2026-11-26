@@ -1,7 +1,7 @@
 # Identidade visual e marca
 
 ## Nome
-- **Nome de trabalho:** PapeAI (Q-01 — confirmar significado: papo? papear? papagaio?).
+- **Nome:** PapeAI (Q-01 confirmado em 2026-11-26). Mascote: macaco-sagui (Q-02).
 - **Checagens antes da F11:** domínio (`.com.br`, `.app`), busca no INPI (classes 9 — software — e 41 — educação), nomes parecidos nas lojas, nome de usuário no GitHub/redes.
 - **Domínio oficial** será publicado no README e dentro do app (anti-phishing, T16): *"O PapeAI só existe em `<dominio>` e `app.<dominio>`. Nunca pedimos sua chave por e-mail, mensagem ou link."*
 
@@ -13,7 +13,7 @@ Escola amigável · segura · inteligente · honesta · um pouco atrevida (modo 
 |---|---|---|---|
 | A — Mascote no balão | Cabeça do mascote dentro de um balão de fala | Liga marca, conversa e mascote | Depende do mascote estar definido |
 | B — Wordmark | "PapeAI" com o "A" formando um balão de fala | Funciona sem o mascote; legível | Menos memorável |
-| C — Monograma | "P" como balão de fala (ou bico, se papagaio) | Ótimo como ícone de app | Precisa de bom desenho |
+| C — Monograma | "P" como balão de fala (ou com tufo de orelha do sagui) | Ótimo como ícone de app | Precisa de bom desenho |
 
 Requisitos: SVG mestre; legível a 16 px (favicon); versões colorida/monocromática/negativa; ícone adaptável do Android (camada de frente + fundo, área segura central); sem gradientes finos que somem em tamanhos pequenos.
 

@@ -9,7 +9,7 @@
 | Método | Web | Android (F10) | Observações |
 |---|---|---|---|
 | **Google** | OAuth com PKCE por redirecionamento (`signInWithOAuth`) — nenhum script do Google dentro do app | Login nativo do Google → `signInWithIdToken` (com nonce) | Escopos mínimos: `openid`, `email`, `profile` |
-| **E-mail com código** | `signInWithOtp` + `verifyOtp` (código de 6 dígitos) | Igual | Sem senha: nada para vazar ou esquecer |
+| **E-mail + senha** | `signUp` (com confirmação de e-mail) + `signInWithPassword`; "esqueci a senha" por e-mail | Igual | Senha mín. 8 caracteres; bloqueio de senhas vazadas se o plano permitir; Turnstile; anti-enumeração |
 | Apple | — | — | Avaliar na F12 (iOS) conforme diretrizes da App Store |
 
 > As chamadas exatas do `supabase-js` são confirmadas na documentação oficial na F02 (regra anti-alucinação).
@@ -40,8 +40,8 @@ O "One Tap" exige carregar um script do Google **dentro da origem do app**, onde
 - [ ] Segredo do cliente OAuth **só** no painel do Supabase — nunca no repositório.
 
 ## Cadastro e primeiro acesso
-1. Login (Google ou código) → Supabase cria o usuário → gatilho cria `profiles` e `notification_preferences`.
-2. Tela obrigatória: aceitar **Termos** e **Privacidade** (versões atuais) e confirmar **18+** → gravar em `consent_records` + `profiles.age_confirmed_at`.
+1. Login (Google ou e-mail e senha) → Supabase cria o usuário → gatilho cria `profiles` e `notification_preferences`.
+2. Tela obrigatória: aceitar **Termos** (que incluem a cláusula de maioridade — sem perguntar idade, ADR-0010) e **Privacidade** (versões atuais) → gravar em `consent_records`.
 3. Sem esse passo, o app não libera nada (guard de rota + verificação no carregamento).
 4. Depois: tela educativa da chave (F03) → onboarding (F05).
 
