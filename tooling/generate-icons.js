@@ -169,7 +169,18 @@ function pathShape(attributes) {
 }
 
 function parseMaster(svg) {
-  const withoutComments = svg.replace(/<!--[\s\S]*?-->/g, '').replace(/<\?xml[^>]*\?>/, '');
+  // Strip comments until nothing changes, so nested or overlapping markers
+  // cannot leave a new "<!--" behind; refuse any leftover marker outright.
+  let withoutComments = svg;
+  let previous;
+  do {
+    previous = withoutComments;
+    withoutComments = withoutComments.replace(/<!--[\s\S]*?-->/g, '');
+  } while (withoutComments !== previous);
+  if (withoutComments.includes('<!--') || withoutComments.includes('-->')) {
+    throw new Error('Master has an unterminated XML comment');
+  }
+  withoutComments = withoutComments.replace(/<\?xml[^>]*\?>/, '');
   const inner = /<svg\b[^>]*>([\s\S]*)<\/svg>/.exec(withoutComments)?.[1];
   if (inner === undefined) throw new Error('Master is not an <svg> document');
 

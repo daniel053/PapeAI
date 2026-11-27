@@ -123,7 +123,7 @@ describe('e2e.csp-blocks (static): app specifics', () => {
   it('has the robots meta tag and no inline script in index.html', () => {
     const html = read('app/index.html');
     expect(html).toContain('<meta name="robots" content="noindex, nofollow" />');
-    for (const tag of html.match(/<script\b[^>]*>/g) ?? []) {
+    for (const tag of html.match(/<script\b[^>]*>/gi) ?? []) {
       expect(tag).toMatch(/\ssrc=/);
     }
     expect(html).not.toMatch(/\sstyle=/);
