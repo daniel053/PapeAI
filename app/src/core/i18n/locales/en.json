@@ -1,0 +1,107 @@
+{
+  "app": {
+    "name": "PapeAI",
+    "tagline": "Your AI English tutor"
+  },
+  "shell": {
+    "skipToContent": "Skip to content",
+    "home": "PapeAI home"
+  },
+  "language": {
+    "label": "Interface language",
+    "pt-BR": "Português",
+    "en": "English"
+  },
+  "mascot": {
+    "placeholderLabel": "PapeAI mascot, a marmoset (2D draft)"
+  },
+  "home": {
+    "title": "Hi! Great to have you here.",
+    "intro": "We are building PapeAI: an English tutor that talks with you, listens word by word and builds a path toward what you want to do.",
+    "keyPromise": "Your API key stays on your device only — and the open source code shows it.",
+    "status": "Work in progress. There are no lessons yet."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This address does not exist in PapeAI.",
+    "back": "Back to home"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "settings": "Settings"
+  },
+  "ui": {
+    "close": "Close",
+    "dismissNotice": "Close notice",
+    "notices": "Notices"
+  },
+  "settings": {
+    "title": "Settings",
+    "intro": "Make PapeAI yours. Your choices are saved on this device.",
+    "languageTitle": "Language",
+    "languageDescription": "The language of menus and buttons.",
+    "themeTitle": "Appearance",
+    "themeLegend": "Colour theme",
+    "themeSystem": "Same as device",
+    "themeSystemHint": "Follows your device's light or dark mode.",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeNowLight": "The app is using the light theme now.",
+    "themeNowDark": "The app is using the dark theme now.",
+    "galleryLink": "Open the component gallery (development only)"
+  },
+  "gallery": {
+    "title": "Component gallery",
+    "intro": "Development-only page: shows every design system component. It does not exist in the published version.",
+    "buttons": "Buttons",
+    "primary": "Primary",
+    "secondary": "Secondary",
+    "ghost": "Ghost",
+    "danger": "Danger",
+    "small": "Small",
+    "large": "Large",
+    "disabled": "Disabled",
+    "save": "Save",
+    "saving": "Saving…",
+    "fields": "Text fields",
+    "nameLabel": "Your name",
+    "nameHint": "What the tutor will call you.",
+    "emailLabel": "Email",
+    "emailError": "This email looks incomplete. Check what comes after the @.",
+    "card": "Card",
+    "cardTitle": "Today's goal",
+    "cardBody": "10 minutes of conversation. Consistency is a language superpower.",
+    "dialog": "Dialog",
+    "openDialog": "Open dialog",
+    "dialogTitle": "Leave the lesson?",
+    "dialogBody": "What you have done in this lesson is saved. You can continue later.",
+    "cancel": "Stay in the lesson",
+    "confirm": "Leave",
+    "toasts": "Notices",
+    "showInfo": "Show tip",
+    "showSuccess": "Show success",
+    "showError": "Show error",
+    "infoMessage": "Tip: you can change the theme in Settings.",
+    "successMessage": "Done! Your choice was saved.",
+    "errorMessage": "I could not save. Did your connection drop? Try again.",
+    "switch": "Switch",
+    "switchLabel": "Captions",
+    "switchDescription": "Show the text of everything the tutor says.",
+    "tabs": "Tabs",
+    "tabsLabel": "Period",
+    "tabToday": "Today",
+    "tabWeek": "Week",
+    "tabMonth": "Month",
+    "tabTodayBody": "Today you talked for 5 minutes.",
+    "tabWeekBody": "This week you practised on 3 days.",
+    "tabMonthBody": "This month you learned 42 new words.",
+    "radio": "Single choice"
+  },
+  "appUpdate": {
+    "message": "A new version of PapeAI is available.",
+    "update": "Update",
+    "updating": "Updating…",
+    "dismiss": "Not now"
+  }
+}

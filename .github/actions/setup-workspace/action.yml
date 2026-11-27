@@ -1,0 +1,34 @@
+# Local composite action: installs pnpm (version from root package.json "packageManager"),
+# Node.js (version from .nvmrc) and the workspace dependencies with a frozen lockfile.
+# Third-party actions are pinned by full commit SHA (verified with `gh api`, see
+# docs/processo/git-github-e-ci.md). Dependabot keeps the SHAs and comments up to date.
+name: Setup workspace
+description: Install pnpm, Node.js and workspace dependencies (frozen lockfile)
+
+inputs:
+  cache:
+    description: "Cache the pnpm store ('true' or 'false'). Use 'false' in deploy workflows."
+    required: false
+    default: 'true'
+  install:
+    description: "Run `pnpm install --frozen-lockfile` ('true' or 'false')."
+    required: false
+    default: 'true'
+
+runs:
+  using: composite
+  steps:
+    - name: Setup pnpm (version from package.json packageManager)
+      uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+    - name: Setup Node.js (version from .nvmrc)
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version-file: .nvmrc
+        cache: ${{ inputs.cache == 'true' && 'pnpm' || '' }}
+        package-manager-cache: false
+
+    - name: Install dependencies (frozen lockfile)
+      if: inputs.install == 'true'
+      shell: bash
+      run: pnpm install --frozen-lockfile

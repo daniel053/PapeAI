@@ -18,6 +18,7 @@ Uma ADR registra **uma** decisão: contexto, opções, escolha e consequências.
 | [0009](ADR-0009-conteudo-curado-mais-geracao-validada.md) | Conteúdo curado no repositório + geração por IA validada | Aceita | F00 |
 | [0010](ADR-0010-idade-minima-18.md) | Maioridade só nos Termos (sem perguntar idade) | Aceita com ajuste | F00 |
 | [0011](ADR-0011-dados-sensiveis-no-aparelho.md) | Dados sensíveis ficam no aparelho por padrão | Aceita | F00 |
+| [0012](ADR-0012-componentes-nativos-sem-radix.md) | Componentes de interface nativos, sem shadcn/Radix | Aceita | F01 |
 
 ## Modelo
 ```markdown

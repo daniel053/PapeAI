@@ -1,6 +1,6 @@
 # F00 — Fundação e decisões
 
-> **Status:** 🚧 Em andamento
+> **Status:** ✅ Aprovada em 2026-11-26 ("aprovado F00"). Pendências herdadas em `../00-ESTADO-ATUAL.md`.
 
 ## Objetivo
 Sair desta fase com: **decisões aprovadas**, **contas de desenvolvedor protegidas**, **ambiente de desenvolvimento pronto no Windows** e **repositório configurado** — sem escrever código de produto ainda.
@@ -41,10 +41,10 @@ Sair desta fase com: **decisões aprovadas**, **contas de desenvolvedor protegid
 - [ ] Colar no relatório do portão a saída de `git --version`, `node -v`, `pnpm -v`, `gh --version`.
 
 ### D. Repositório
-- [x] `git remote -v` (`github.com/daniel053/PapeAI`; público/privado a confirmar) — confirmar o repositório no GitHub e se ele é **público ou privado** (se for público, revisar `docs/03-...` antes do primeiro push — contém comentários pessoais).
+- [x] `git remote -v` (`github.com/daniel053/PapeAI`; **público** — confirmado em 2026-11-26 com `gh repo view`; `docs/03-...` já está publicado desde o commit `initial`) — confirmar o repositório no GitHub e se ele é **público ou privado** (se for público, revisar `docs/03-...` antes do primeiro push — contém comentários pessoais).
 - [x] `.gitignore` (Node, `.env*`, build, OS, editores), `.gitattributes` (finais de linha LF), `.editorconfig`.
 - [x] `LICENSE` conforme ADR-0005 (e aviso de marca no README).
-- [ ] GitHub: secret scanning + **push protection**, Dependabot alerts, relato privado de vulnerabilidades; proteção da branch `main` (configurada de fato na F01, quando houver CI).
+- [x] GitHub: secret scanning + **push protection**, Dependabot alerts, relato privado de vulnerabilidades (verificados via `gh api` em 2026-11-26); proteção da branch `main` (configurada de fato na F01, quando houver CI).
 - [ ] Primeiro commit da documentação (**com autorização do dono**).
 
 ### E. Trilhas paralelas (podem começar já)

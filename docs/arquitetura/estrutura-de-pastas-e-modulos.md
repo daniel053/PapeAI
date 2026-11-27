@@ -68,7 +68,11 @@ PapeAI/
 | `features/*` | `core/*` (exceto `vault` e `net`), `ui`, `mascot`, `platform` | `@supabase/supabase-js` direto, `core/vault` (exceção: `features/api-key` usa só `setKey/removeKey/hasKey/fingerprint`) |
 | `ui`, `mascot` | `config` | `core/*` de dados |
 
-Implementação: `eslint` com `no-restricted-imports` (ou `eslint-plugin-boundaries`, se aprovado) + teste que falha se a regra for removida.
+Implementação (F01): regra local `papeai/restricted-modules` em `tooling/eslint-plugin-papeai.js`, ligada em `eslint.config.js`, + teste `app/src/security-lint.test.ts` que falha se a regra for removida.
+- **Por que regra local e não `no-restricted-imports`:** a regra padrão compara só o texto do import. Um import "irmão" como `'../vault'` (de dentro de `core/tutor`) não contém `core/vault` e passava despercebido — o teste pegou essa brecha. A regra local resolve o caminho real a partir do arquivo antes de comparar. Sem dependência nova.
+- Também cobertos: `import type`, `export * from`, `import()` dinâmico e aliases do tipo `@/core/vault`.
+- Rede: fora de `core/net`, o lint proíbe `fetch`, `XMLHttpRequest`, `WebSocket`, `EventSource`, `window.fetch`/`globalThis.fetch` e `navigator.sendBeacon`; o app usa `appFetch` (`app/src/app/network.ts`).
+- Exceção de `features/api-key` (só `setKey/removeKey/hasKey/fingerprint`): configurar na F03, junto com o cofre.
 
 ## API pública do cofre (contrato)
 ```ts

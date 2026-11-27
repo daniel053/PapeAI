@@ -27,7 +27,7 @@
 - [ ] Zero scripts/fontes de terceiros no app.
 - [ ] Regras de lint: proibição de `dangerouslySetInnerHTML`/`eval`; fronteiras de módulos.
 - [ ] Branch `main` protegida; Actions com permissões mínimas e fixadas por SHA.
-- [ ] Hook local anti-segredo (gitleaks) instalado; hook do Claude Code anti-padrão-de-chave (SEG-17) avaliado.
+- [ ] Hook local anti-segredo (gitleaks) instalado; hook do Claude Code anti-padrão-de-chave (SEG-17) avaliado. *(hook pronto em `tooling/git-hooks/pre-commit`, ligar com `pnpm hooks:install`; proposta SEG-17 em `../processo/git-github-e-ci.md`, aguarda aprovação)*
 
 ## F02 — Contas e usuários
 - [ ] RLS em todas as tabelas; teste de RLS com 2 usuários + anônimo cobrindo todas as tabelas.

@@ -1,6 +1,6 @@
 # F01 — Esqueleto web, design system e segurança base
 
-> **Status:** ⏳ Não iniciada
+> **Status:** 🚧 Em andamento (aberta em 2026-11-26) — tudo o que dá para fazer localmente está pronto (sessão 03); faltam as etapas que dependem do dono (Cloudflare, segredos, proteção da `main`, aprovação do Playwright, logo).
 
 ## Objetivo
 Um app **vazio, mas real**, no ar: PWA em React + Vite + TypeScript, design system inicial, i18n, CSP e cabeçalhos de segurança, `robots.txt`/`noindex`, `security.txt`, CI completa e deploy automático em **duas origens** (site institucional provisório e app). Você abre no celular e instala como app.
@@ -22,41 +22,41 @@ Um app **vazio, mas real**, no ar: PWA em React + Vite + TypeScript, design syst
 
 ## Passos
 ### A. Estrutura e qualidade de código
-- [ ] Verificar versões atuais (`npm view ... version`) de Vite, React, TypeScript, Tailwind, React Router, i18next, Vitest, Playwright e registrar em `../arquitetura/stack-tecnologica.md`.
-- [ ] Criar workspace pnpm com `app/` e `site/`; scripts `dev`, `build`, `test`, `lint`, `typecheck`, `e2e`.
-- [ ] TypeScript `strict`; ESLint (flat config) com: fronteiras de módulos, proibição de `dangerouslySetInnerHTML`/`eval`/`innerHTML`, imports restritos de `core/vault` (pasta ainda vazia, regra já ativa).
-- [ ] Estrutura de pastas conforme `../arquitetura/estrutura-de-pastas-e-modulos.md`.
+- [x] Verificar versões atuais (`npm view ... version`) de Vite, React, TypeScript, Tailwind, React Router, i18next, Vitest, Playwright e registrar em `../arquitetura/stack-tecnologica.md`. *(sessão 03; TypeScript 6.0.3 por compatibilidade com o lint)*
+- [ ] Criar workspace pnpm com `app/` e `site/`; scripts `dev`, `build`, `test`, `lint`, `typecheck`, `e2e`. *(feito, exceto `e2e`, que chega com o Playwright)*
+- [x] TypeScript `strict`; ESLint (flat config) com: fronteiras de módulos, proibição de `dangerouslySetInnerHTML`/`eval`/`innerHTML`, imports restritos de `core/vault` (pasta ainda vazia, regra já ativa). *(+ `fetch` direto proibido fora de `core/net`)*
+- [x] Estrutura de pastas conforme `../arquitetura/estrutura-de-pastas-e-modulos.md`. *(pastas criadas conforme o uso; as demais surgem em suas fases)*
 
 ### B. Design system
-- [ ] Tokens (cores, tipografia, espaçamento, raios) como variáveis CSS + Tailwind.
-- [ ] Fontes self-hosted (Nunito/Inter, licença OFL registrada).
-- [ ] Componentes base acessíveis: botão, campo, cartão, diálogo, aviso (toast), alternador, abas.
-- [ ] Casca do app: barra superior, navegação inferior (mobile), área do mascote (placeholder 2D).
-- [ ] Logo: direção escolhida pelo dono (ou placeholder textual).
+- [x] Tokens (cores, tipografia, espaçamento, raios) como variáveis CSS + Tailwind. *(tema escuro com preferência sistema/claro/escuro; tons `-700` para texto de status)*
+- [x] Fontes self-hosted (Nunito/Inter, licença OFL registrada).
+- [x] Componentes base acessíveis: botão, campo, cartão, diálogo, aviso (toast), alternador, abas. *(nativos, sem pacote — ADR-0012; + grupo de rádio; galeria em `/dev/componentes` só em desenvolvimento)*
+- [x] Casca do app: barra superior, navegação inferior (mobile), área do mascote (placeholder 2D). *(+ tela Configurações: idioma e tema)*
+- [ ] Logo: direção escolhida pelo dono (ou placeholder textual). *(placeholder textual em uso; direção A/B/C aguarda o dono)*
 
 ### C. Internacionalização
-- [ ] i18next com `pt-BR` e `en`; regra: nenhum texto de interface fixo no código.
+- [x] i18next com `pt-BR` e `en`; regra: nenhum texto de interface fixo no código. *(chave inexistente vira erro de compilação; teste garante as mesmas chaves nos dois idiomas)*
 
 ### D. PWA
-- [ ] Manifest, ícones (incluindo adaptável), service worker com cache **só de estáticos**, aviso de nova versão.
+- [x] Manifest, ícones (incluindo adaptável), service worker com cache **só de estáticos**, aviso de nova versão. *(ícones gerados sem dependência por `tooling/generate-icons.js`; instalação no celular depende do deploy)*
 
 ### E. Segurança base
-- [ ] `app/public/_headers` com a CSP do app (`connect-src 'self'` por enquanto) e demais cabeçalhos; `site/public/_headers`.
-- [ ] `robots.txt` (app: `Disallow: /`; site: `Allow: /`), meta `noindex` no app, `X-Robots-Tag`.
-- [ ] `/.well-known/security.txt` nas duas origens; `SECURITY.md` (promessas + como reportar).
-- [ ] `core/net`: guarda de rede com allowlist (inicialmente só a própria origem) + testes.
-- [ ] Hook local de pré-commit com gitleaks; job de gitleaks na CI.
-- [ ] Avaliar hook do Claude Code que bloqueia gravação de padrões de chave (SEG-17) — configurar só com aprovação.
+- [x] `app/public/_headers` com a CSP do app (`connect-src 'self'` por enquanto) e demais cabeçalhos; `site/public/_headers`. *(Trusted Types em modo só-relatório; verificação em produção pendente)*
+- [x] `robots.txt` (app: `Disallow: /`; site: `Allow: /`), meta `noindex` no app, `X-Robots-Tag`.
+- [x] `/.well-known/security.txt` nas duas origens; `SECURITY.md` (promessas + como reportar). *(`Canonical` quando houver domínio)*
+- [x] `core/net`: guarda de rede com allowlist (inicialmente só a própria origem) + testes.
+- [x] Hook local de pré-commit com gitleaks; job de gitleaks na CI. *(hook pronto; ativar com `pnpm hooks:install` após instalar o gitleaks — decisão do dono)*
+- [x] Avaliar hook do Claude Code que bloqueia gravação de padrões de chave (SEG-17) — configurar só com aprovação. *(proposta em `../processo/git-github-e-ci.md`; não configurado)*
 
 ### F. CI/CD e hospedagem
-- [ ] GitHub Actions: lint, typecheck, unit, build, e2e (smoke), gitleaks, auditoria de dependências; permissões mínimas; actions fixadas por SHA.
-- [ ] Dependabot (npm + actions), CodeQL (se o repositório for público).
-- [ ] Proteção da `main`: PR obrigatório + CI verde.
-- [ ] Cloudflare: conta com MFA; dois projetos (site e app); preview por PR; produção na `main`; subdomínios gratuitos até existir domínio.
+- [ ] GitHub Actions: lint, typecheck, unit, build, e2e (smoke), gitleaks, auditoria de dependências; permissões mínimas; actions fixadas por SHA. *(arquivos prontos, exceto e2e — Playwright não aprovado; ainda não rodou no GitHub)*
+- [x] Dependabot (npm + actions), CodeQL (se o repositório for público). *(arquivos prontos; passam a valer no primeiro push)*
+- [ ] Proteção da `main`: PR obrigatório + CI verde. *(dono — passo a passo em `../processo/git-github-e-ci.md`)*
+- [ ] Cloudflare: conta com MFA; dois projetos (site e app); preview por PR; produção na `main`; subdomínios gratuitos até existir domínio. *(Workers com assets estáticos; `wrangler.jsonc` e `deploy.yml` prontos; falta a conta e os segredos — dono)*
 
 ### G. Testes
-- [ ] Vitest funcionando com 1 teste real (ex.: guarda de rede).
-- [ ] Playwright: app carrega; cabeçalhos presentes; `robots.txt` correto; axe sem violações graves na tela inicial.
+- [x] Vitest funcionando com 1 teste real (ex.: guarda de rede). *(241 testes em 10 arquivos)*
+- [ ] Playwright: app carrega; cabeçalhos presentes; `robots.txt` correto; axe sem violações graves na tela inicial. *(instalação não aprovada na sessão 03; cabeçalhos, robots e security.txt já cobertos por Vitest em `app/src/security-headers.test.ts`)*
 
 ## Segurança nesta fase
 Seção F01 do checklist. Destaques: CSP sem `unsafe-inline`/`unsafe-eval`; zero terceiros no app; origens separadas; segredos fora do repositório.

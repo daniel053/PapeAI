@@ -1,0 +1,32 @@
+#!/bin/sh
+# PapeAI pre-commit hook: scans the STAGED changes for secrets with gitleaks.
+# Enable once per clone with:  pnpm hooks:install   (sets core.hooksPath=tooling/git-hooks)
+# If gitleaks is not installed the commit continues with a warning; CI (job `secrets`) still
+# scans the full history on every PR.
+# Commands verified against the gitleaks v8.30.1 README (`git --pre-commit --staged`, 2026-11-26).
+
+repo_root=$(git rev-parse --show-toplevel) || exit 1
+cd "$repo_root" || exit 1
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks is not installed - secret scan SKIPPED for this commit." >&2
+  echo "pre-commit: install it (see docs/processo/git-github-e-ci.md) to block secrets before they are committed." >&2
+  exit 0
+fi
+
+if gitleaks git --help >/dev/null 2>&1; then
+  # gitleaks >= 8.19
+  gitleaks git --pre-commit --staged --config .gitleaks.toml --redact --no-banner --verbose
+else
+  # older gitleaks: deprecated command, same check
+  gitleaks protect --staged --config .gitleaks.toml --redact --no-banner --verbose
+fi
+status=$?
+
+if [ "$status" -ne 0 ]; then
+  echo "" >&2
+  echo "pre-commit: COMMIT BLOCKED - gitleaks found something that looks like a secret (output above, value redacted)." >&2
+  echo "pre-commit: remove it from the staged files. If it was a real key, revoke it at the provider now." >&2
+  exit "$status"
+fi
+exit 0

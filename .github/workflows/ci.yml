@@ -1,0 +1,129 @@
+# CI for PapeAI. Job names are the "required status checks" for branch protection on main:
+#   lint, format, typecheck, unit, build, audit, secrets
+# E2E (Playwright) is not here yet: the dependency was not approved by the owner (see
+# docs/processo/git-github-e-ci.md). Do not add a placeholder job.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege: read-only token for every job unless a job says otherwise.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-workspace
+      - name: ESLint
+        run: pnpm lint
+
+  format:
+    name: format
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-workspace
+      - name: Prettier (check only)
+        run: pnpm format:check
+
+  typecheck:
+    name: typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-workspace
+      - name: TypeScript
+        run: pnpm typecheck
+
+  unit:
+    name: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-workspace
+      - name: Vitest
+        run: pnpm test
+
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-workspace
+      - name: Build app and site
+        run: pnpm build
+      - name: Check that _headers and robots.txt reached the build output
+        run: |
+          for f in app/dist/_headers app/dist/robots.txt site/dist/_headers site/dist/robots.txt; do
+            if [ ! -f "$f" ]; then
+              echo "::error file=$f::Missing $f in build output"
+              exit 1
+            fi
+          done
+
+  audit:
+    name: audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-workspace
+      # Runtime dependencies run in the learner's browser, next to the API key vault:
+      # fail on moderate or worse.
+      - name: Audit production dependencies (fail on moderate+)
+        run: pnpm audit --prod --audit-level moderate
+      # Build/dev tooling: fail on high or worse.
+      - name: Audit all dependencies (fail on high+)
+        run: pnpm audit --audit-level high
+      - name: Verify npm registry signatures of installed packages
+        run: pnpm audit signatures
+
+  secrets:
+    name: secrets
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # scan the whole git history, not only the last commit
+          persist-credentials: false
+      # Official gitleaks image (MIT), pinned by digest. --redact keeps secrets out of the logs.
+      - name: gitleaks (full history)
+        env:
+          GITLEAKS_IMAGE: ghcr.io/gitleaks/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f
+        run: |
+          docker run --rm --network none -v "$GITHUB_WORKSPACE:/repo" "$GITLEAKS_IMAGE" \
+            git /repo \
+            --config /repo/.gitleaks.toml \
+            --gitleaks-ignore-path /repo \
+            --redact \
+            --no-banner \
+            --verbose

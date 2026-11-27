@@ -1,0 +1,5 @@
+# PapeAI security contact (RFC 9116). Policy and scope: see the Policy link.
+Contact: https://github.com/daniel053/PapeAI/security/advisories/new
+Expires: 2027-11-25T23:59:59Z
+Preferred-Languages: pt, en
+Policy: https://github.com/daniel053/PapeAI/blob/main/SECURITY.md

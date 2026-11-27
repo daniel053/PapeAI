@@ -1,0 +1,32 @@
+{
+  "name": "papeai",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "packageManager": "pnpm@12.23.0",
+  "engines": {
+    "node": ">=26.13.1"
+  },
+  "scripts": {
+    "dev": "pnpm --filter ./app dev",
+    "dev:site": "pnpm --filter ./site dev",
+    "preview:app": "node tooling/serve-static.js app/dist 4173 --spa",
+    "preview:site": "node tooling/serve-static.js site/dist 4174",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "hooks:install": "git config core.hooksPath tooling/git-hooks"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.15.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.14.0",
+    "prettier": "3.10.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.74.0"
+  }
+}

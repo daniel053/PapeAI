@@ -1,0 +1,42 @@
+# Dependabot version updates (security updates are enabled in the repository settings).
+# cooldown: wait before proposing a freshly published version. pnpm 12 already refuses versions
+# younger than 24 h (minimumReleaseAge); 3 days here keeps Dependabot PRs installable and gives
+# the community time to spot a malicious release. Cooldown does not delay security updates.
+version: 2
+updates:
+  - package-ecosystem: npm # pnpm workspaces use the "npm" ecosystem
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: America/Sao_Paulo
+    cooldown:
+      default-days: 3
+      semver-major-days: 7
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'chore(deps)'
+    groups:
+      npm-minor-and-patch:
+        patterns: ['*']
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directories:
+      - /
+      - /.github/actions/*
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: America/Sao_Paulo
+    cooldown:
+      default-days: 3
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'chore(ci)'
+    groups:
+      actions-minor-and-patch:
+        patterns: ['*']
+        update-types: [minor, patch]

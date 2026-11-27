@@ -1,0 +1,1 @@
+export { AppUpdateNotice } from './AppUpdateNotice';
