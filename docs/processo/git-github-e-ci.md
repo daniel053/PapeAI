@@ -122,11 +122,13 @@ Resolve o "Pages x Workers" deixado em aberto na ADR-0004 (o coordenador registr
 
 Os jobs de deploy não fazem checkout nem instalam o projeto: só rodam o Wrangler (versão exata) pela action oficial da Cloudflare. Assim, o código de terceiros que roda no build nunca vê o token.
 
-### Não verificado (a confirmar no primeiro deploy)
-- `[SUPOSIÇÃO]` O primeiro Preview pode exigir que o Worker já exista. Por isso o roteiro abaixo faz o primeiro deploy de **produção** antes de abrir um PR de teste.
-- `[SUPOSIÇÃO]` Permissão mínima do token = **Workers Scripts: Edit** na conta. A doc oficial cita o modelo "Edit Cloudflare Workers" (que também dá KV, R2, Routes e Tail — mais do que precisamos). Se o deploy falhar por permissão, ler o erro e adicionar só o que ele pedir.
-- `[SUPOSIÇÃO]` Os cabeçalhos do `_headers` também valem para a resposta de fallback da SPA (a doc não diz). Verificar com `curl -I https://<app>/rota-inexistente` no portão.
-- Os workflows não foram executados ainda (nada foi enviado ao GitHub). A validação local foi: análise de sintaxe dos YAML/JSONC com o parser do Prettier, `pnpm lint` e `pnpm format:check`.
+### Verificado no primeiro deploy (2026-11-28)
+- O primeiro Preview **não** exigiu que o Worker já existisse: o preview do PR #1 rodou antes do primeiro deploy de produção e publicou os dois Workers.
+- O deploy funcionou com o token criado pelo roteiro abaixo (permissão pedida: **Workers Scripts: Edit**, só na conta). A IA não vê o token: a permissão efetiva é a que o dono escolheu no painel.
+- Em **produção**, os cabeçalhos do `_headers` valem também para a resposta de fallback da SPA: `curl -I` em `/configuracoes` e `/rota-inexistente` → 200 com a CSP completa. No site, o 404 real também traz a CSP.
+- Nos **Previews** (`wrangler preview`, beta), o `not_found_handling = "single-page-application"` **não** foi aplicado: rotas internas do app devolvem `404 Not found` sem os cabeçalhos do `_headers`, tanto na URL do preview quanto na URL única do deploy. A documentação diz que o bloco `assets` de nível superior vale nos Previews ([Configuration](https://developers.cloudflare.com/workers/previews/configuration/), lida em 2026-11-28), então parece uma limitação não documentada. Na prática: no preview, navegue a partir da tela inicial; teste o recarregamento de rotas internas em produção.
+- Nas URLs `workers.dev` de Preview, a Cloudflare adiciona `X-Robots-Tag: noindex` sozinha ([Previews](https://developers.cloudflare.com/workers/previews/)). Por isso o preview do site aparece com `noindex`, e a produção do site não.
+- A `wrangler-action` tenta primeiro um `npx wrangler` (falha sem efeito) e depois instala a versão fixada: os logs mostram `wrangler 4.168.0`.
 - Melhoria futura (precisa de aprovação + ficha): colocar `wrangler` como `devDependency` fixada no lockfile, para o deploy usar a mesma versão auditada e protegida pelo `minimumReleaseAge`.
 
 ## Checklist do dono (só você pode fazer)

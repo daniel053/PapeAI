@@ -3,17 +3,19 @@
 > **Arquivo vivo.** A IA lê este arquivo primeiro em toda sessão e o atualiza no fim.
 > É a fonte de verdade sobre "onde estamos" — nunca a memória da conversa.
 
-**Última atualização:** 2026-11-26 — Sessão 03
+**Última atualização:** 2026-11-28 — Sessão 04
 
 ## Onde estamos
 - **Fase atual:** F01 — Esqueleto web, design system e segurança base
-- **Status da fase:** 🚧 Em andamento — **tudo o que dá para fazer localmente está pronto** (sessão 03, commitado na branch `fase-01/esqueleto-web`, sem push). O portão depende de passos do dono: push/PR, Cloudflare, segredos, proteção da `main`, teste no celular.
+- **Status da fase:** 🔎 Em revisão (portão) — no ar em produção, CI verde, `main` protegida. Relatório: `fases/relatorios/F01-relatorio.md`.
+  - App: https://papeai-app.danielmessias053.workers.dev
+  - Site: https://papeai-site.danielmessias053.workers.dev
 - **Próximo passo (dono), nesta ordem:**
-  1. Rodar o roteiro local abaixo.
-  2. Autorizar o **push** da branch `fase-01/esqueleto-web` e a abertura do PR (a CI roda pela primeira vez lá).
-  3. Seguir o checklist do dono em `processo/git-github-e-ci.md`: conta Cloudflare com MFA, token com permissão mínima, ambientes e segredos no GitHub, proteção da `main`, relato privado de vulnerabilidades.
-  4. Decidir: Playwright + axe (recusado nesta sessão; o portão pede), ativar o hook gitleaks local (`pnpm hooks:install`), hook SEG-17 do Claude Code, prazo de 7 dias proposto no `SECURITY.md`, direção do logo (A/B/C).
-- **Próximo passo (IA):** acompanhar a primeira execução da CI e corrigir o que falhar; após o deploy, `curl -I` das URLs reais, scanner de cabeçalhos, Lighthouse e o relatório do portão ("preparar portão").
+  1. Instalar o app no celular e seguir o roteiro do relatório do portão.
+  2. Decidir: autorizar o scanner público de cabeçalhos (envia a URL a um serviço externo), rodar o `/security-review`, trocar ou não o subdomínio `danielmessias053`.
+  3. Decidir (herdado): Playwright + axe, `pnpm hooks:install`, hook SEG-17, prazo de 7 dias do `SECURITY.md`, direção do logo (A/B/C), regras de merge (só squash + apagar branch) e Dependabot security updates.
+  4. Responder ao portão: "aprovado F01", "aprovado com ressalvas F01: …" ou "reprovado: …".
+- **Próximo passo (IA):** tratar o que o dono decidir no portão; ao aprovar, registrar a aprovação e abrir a F02.
 
 ### Roteiro rápido para o dono (sessão 03)
 1. `pnpm install` (só na primeira vez) e depois `pnpm dev`.
@@ -34,7 +36,7 @@
 | Fase | Nome | Status | Aprovada em | Tag git |
 |---|---|---|---|---|
 | F00 | Fundação e decisões | ✅ aprovada (pendências herdadas acima) | 2026-11-26 | — (aguarda autorização) |
-| F01 | Esqueleto web, design system e segurança base | 🚧 em andamento (parte local pronta; faltam passos do dono) | — | — |
+| F01 | Esqueleto web, design system e segurança base | 🔎 em revisão (portão; relatório em `fases/relatorios/F01-relatorio.md`) | — | — |
 | F02 | Contas, usuários e dados no servidor | ⏳ não iniciada | — | — |
 | F03 | Cofre da chave (BYOK) e conexão com o Claude | ⏳ não iniciada | — | — |
 | F04 | Tutor em texto | ⏳ não iniciada | — | — |
@@ -69,7 +71,7 @@ Legenda: ⏳ não iniciada · 🚧 em andamento · 🔎 em revisão (portão) ·
 ✅ Respondidas: Q-01 (PapeAI), Q-02 (macaco-sagui), Q-03 (Pro, sem créditos de API), Q-04 (créditos sob demanda), Q-06 (Google + e-mail e senha), Q-07 (sem perguntar idade), Q-08 (GPL-3.0-or-later), Q-12 (fica no OneDrive, sync desativado), Q-05 (stack web + Capacitor aprovada).
 
 ## Bloqueios atuais
-- Push, deploy, proteção da `main` e conta Cloudflare dependem do dono (checklist em `processo/git-github-e-ci.md`).
+- Portão F01 aguarda: teste de instalação no celular, decisão sobre o scanner público de cabeçalhos e o `/security-review`.
 - Playwright + axe recusados por ora: o critério do portão "e2e (smoke)" e o axe ficam em aberto até nova decisão.
 
 ## Riscos ativos (top 5)
@@ -82,6 +84,13 @@ Legenda: ⏳ não iniciada · 🚧 em andamento · 🔎 em revisão (portão) ·
 | 5 | Escopo grande para um dev solo | Alto | Fases pequenas, portões, backlog disciplinado, marcos M1–M4 | `fases/README.md` |
 
 ## Evidências da última sessão
+- **Sessão 04 (F01) — publicação e portão:**
+  - Push da branch e [PR #1](https://github.com/daniel053/PapeAI/pull/1). Primeira CI: só o `CodeQL` falhou, com 2 alertas (regex de `<script>` sensível a maiúsculas em teste; remoção incompleta de comentários no gerador de ícones). Corrigidos em `ff00bfb`. Depois: todos os checks verdes, 241 testes.
+  - GitHub (autorizado pelo dono): environment `production` liberado só para a `main`; ruleset `main-protection` ativo (PR obrigatório, 9 checks obrigatórios com branch atualizada, sem force push e sem exclusão). Não aplicados por escolha do dono: só squash, apagar branch após merge, Dependabot security updates.
+  - Dono criou a conta Cloudflare e o token e gravou os 4 secrets (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` em `production` e `preview`), conferidos só pelos nomes.
+  - Preview do PR #1 publicado. Rotas internas do app dão 404 sem CSP **só no preview** (detalhes em `processo/git-github-e-ci.md`).
+  - Merge do PR #1 por squash, feito pela IA a pedido do dono (`82d5394`; inclui o commit da F00 `4a3ee7a`). Deploy de produção ✅ (run 46104564118).
+  - Produção (`curl -I`): CSP, HSTS, nosniff, Referrer-Policy, Permissions-Policy, COOP/CORP e `X-Robots-Tag` no app, inclusive no fallback da SPA; site indexável com `script-src 'none'`; `robots.txt` e `security.txt` publicados. Navegador do Claude em produção: `/configuracoes` abre direto, só requisições à própria origem, console só com o aviso do Trusted Types (modo só-relatório).
 - **Sessão 03 (F01) — segunda parte, com 4 agentes em paralelo** (PWA, cabeçalhos de segurança, CI/deploy, design system), cada um com arquivos próprios:
   - Verificação final do conjunto (raiz): `pnpm lint` ✅ · `pnpm format:check` ✅ · `pnpm typecheck` ✅ · `pnpm test` ✅ **241 testes em 10 arquivos** · `pnpm build` ✅ (app: JS 396,2 KB / **125,7 KB gzip**; precache do service worker: 14 arquivos, 652,9 KiB) · `pnpm audit --prod` ✅ "No known vulnerabilities found" · `node tooling/generate-icons.js --check` ✅.
   - Dono aprovou: `vite-plugin-pwa` 2.0.0, `workbox-build`/`workbox-window` 7.4.1. Recusou por ora: Playwright + axe. Decidiu: componentes nativos sem pacote (**ADR-0012**).
@@ -111,6 +120,7 @@ Legenda: ⏳ não iniciada · 🚧 em andamento · 🔎 em revisão (portão) ·
 | # | Data | Fase | Resumo |
 |---|---|---|---|
 | 01 | 2026-11-26 | F00 | Documentação de planejamento criada a partir da ideia original; perguntas e ADRs propostas. |
+| 04 | 2026-11-28 | F01 | Push e PR #1; alertas do CodeQL corrigidos; `main` protegida; Cloudflare configurada pelo dono; merge e primeiro deploy de produção; cabeçalhos verificados em produção; relatório do portão. |
 | 03 | 2026-11-26 | F01 | Esqueleto local (workspace pnpm, React 19 + Vite 8 + TS 6, Tailwind 4, i18n, `core/net`, lint de segurança) + 4 agentes: PWA, cabeçalhos/CSP/robots/security.txt, CI/Dependabot/CodeQL/deploy Cloudflare (arquivos), design system nativo com tema escuro (ADR-0012). 241 testes verdes. Commit na branch `fase-01/esqueleto-web`, sem push. |
 | 02 | 2026-11-26 | F00 | Ambiente (Node 26, pnpm, gh) instalado; todas as perguntas bloqueantes respondidas; ADRs 0001–0006 e 0009–0011 aceitas (0007 e 0008 seguem propostas até F07/F04); LICENSE (GPL-3.0), .gitignore, .gitattributes, .editorconfig criados. |
 
