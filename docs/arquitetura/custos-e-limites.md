@@ -11,7 +11,7 @@
 | Domínio | Projeto | ~R$ 40/ano (`.com.br`) — recomendado a partir da F09 |
 | Google Play | Projeto | US$ 25, taxa única — F10 |
 | Apple Developer | Projeto | US$ 99/ano — só se houver iOS (F12) |
-| Créditos de API para desenvolver | Dono (ou créditos inclusos no plano Max/Ultra/Team) | Pré-pago; manter limite baixo |
+| Créditos de API para desenvolver | **Dono** — plano Pro (Q-03) **não** inclui créditos de API | Pré-pago na Claude Console; limite de gasto baixo. Valor mínimo de compra a verificar na Console quando for preciso (F03/F04) |
 
 ## Serviços e limites dos planos gratuitos
 | Serviço | Limites relevantes (plano gratuito) | Risco para o PapeAI | Plano B | Fonte |

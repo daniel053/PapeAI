@@ -23,7 +23,7 @@ Cada requisito tem um **ID estável** (use-o em commits, testes e conversas: "im
 | ID | Requisito | Prior. | Fase | Origem |
 |---|---|---|---|---|
 | CON-01 | Login com conta Google. | MVP | F02 | M-04 |
-| CON-02 | Login por e-mail com código de uso único (sem senha). | MVP | F02 | M-04, A-03 |
+| CON-02 | Login por e-mail e senha (confirmação de e-mail + recuperação de senha). | MVP | F02 | M-04, A-03 |
 | CON-03 | Confirmação de e-mail obrigatória. | MVP | F02 | M-03 |
 | CON-04 | Proteção anti-robô invisível (CAPTCHA) no cadastro/login. | MVP | F02 | M-03 |
 | CON-05 | Perfil mínimo: nome de exibição opcional, idioma da interface, fuso horário. | MVP | F02 | M-03 |

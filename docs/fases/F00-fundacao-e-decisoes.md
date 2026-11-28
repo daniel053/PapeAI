@@ -1,6 +1,6 @@
 # F00 — Fundação e decisões
 
-> **Status:** 🚧 Em andamento
+> **Status:** ✅ Aprovada em 2026-11-26 ("aprovado F00"). Pendências herdadas em `../00-ESTADO-ATUAL.md`.
 
 ## Objetivo
 Sair desta fase com: **decisões aprovadas**, **contas de desenvolvedor protegidas**, **ambiente de desenvolvimento pronto no Windows** e **repositório configurado** — sem escrever código de produto ainda.
@@ -24,8 +24,8 @@ Sair desta fase com: **decisões aprovadas**, **contas de desenvolvedor protegid
 ## Passos
 ### A. Revisão e decisões
 - [ ] Dono lê `01-VISAO-DO-PRODUTO.md` e `fases/README.md`.
-- [ ] Dono responde as perguntas bloqueantes (Q-01, Q-02, Q-03, Q-04, Q-05, Q-06, Q-07, Q-08, Q-12).
-- [ ] IA atualiza cada ADR para **Aceita** (ou ajusta conforme a resposta) e os documentos que a ADR lista como afetados.
+- [x] Dono responde as perguntas bloqueantes (Q-01, Q-02, Q-03, Q-04, Q-05, Q-06, Q-07, Q-08, Q-12).
+- [x] IA atualiza cada ADR para **Aceita** (ou ajusta conforme a resposta) e os documentos que a ADR lista como afetados.
 - [ ] Registrar respostas e interpretações confirmadas (ex.: Q-24) em `03-IDEIA-ORIGINAL-E-RASTREABILIDADE.md`.
 
 ### B. Contas e segurança (feito pelo **dono**; a IA orienta, nunca recebe senhas/chaves)
@@ -36,15 +36,15 @@ Sair desta fase com: **decisões aprovadas**, **contas de desenvolvedor protegid
 - [ ] Anotar no `../seguranca/resposta-a-incidentes.md` (tabela de contas) onde cada conta é gerenciada e se o MFA está ativo — **sem senhas**.
 
 ### C. Ambiente de desenvolvimento
-- [ ] Decidir Q-12 e, se aprovado, mover o repositório para fora do OneDrive (passo a passo em `../processo/ambiente-de-desenvolvimento-windows.md`).
-- [ ] Instalar e registrar versões: Git, Node.js **LTS vigente** (confirmar em nodejs.org), pnpm (via Corepack), VS Code + extensões, GitHub CLI.
+- [x] Decidir Q-12 (fica no OneDrive, sync desativado — risco aceito) e, se aprovado, mover o repositório para fora do OneDrive (passo a passo em `../processo/ambiente-de-desenvolvimento-windows.md`).
+- [x] Instalar e registrar versões: Git, Node.js **LTS vigente** (confirmar em nodejs.org), pnpm (via Corepack), VS Code + extensões, GitHub CLI.
 - [ ] Colar no relatório do portão a saída de `git --version`, `node -v`, `pnpm -v`, `gh --version`.
 
 ### D. Repositório
-- [ ] `git remote -v` — confirmar o repositório no GitHub e se ele é **público ou privado** (se for público, revisar `docs/03-...` antes do primeiro push — contém comentários pessoais).
-- [ ] `.gitignore` (Node, `.env*`, build, OS, editores), `.gitattributes` (finais de linha LF), `.editorconfig`.
-- [ ] `LICENSE` conforme ADR-0005 (e aviso de marca no README).
-- [ ] GitHub: secret scanning + **push protection**, Dependabot alerts, relato privado de vulnerabilidades; proteção da branch `main` (configurada de fato na F01, quando houver CI).
+- [x] `git remote -v` (`github.com/daniel053/PapeAI`; **público** — confirmado em 2026-11-26 com `gh repo view`; `docs/03-...` já está publicado desde o commit `initial`) — confirmar o repositório no GitHub e se ele é **público ou privado** (se for público, revisar `docs/03-...` antes do primeiro push — contém comentários pessoais).
+- [x] `.gitignore` (Node, `.env*`, build, OS, editores), `.gitattributes` (finais de linha LF), `.editorconfig`.
+- [x] `LICENSE` conforme ADR-0005 (e aviso de marca no README).
+- [x] GitHub: secret scanning + **push protection**, Dependabot alerts, relato privado de vulnerabilidades (verificados via `gh api` em 2026-11-26); proteção da branch `main` (configurada de fato na F01, quando houver CI).
 - [ ] Primeiro commit da documentação (**com autorização do dono**).
 
 ### E. Trilhas paralelas (podem começar já)
@@ -73,11 +73,11 @@ Ver seção F00 de `../seguranca/checklist-de-seguranca-por-fase.md`. Destaques:
 
 ## Portão de aprovação F00
 **Critérios:**
-- [ ] Perguntas bloqueantes respondidas.
-- [ ] ADRs 0001–0006 e 0009–0011 **Aceitas**; 0007 e 0008 **Propostas** com momento de decisão definido (F07 e F04).
+- [x] Perguntas bloqueantes respondidas.
+- [x] ADRs 0001–0006 e 0009–0011 **Aceitas**; 0007 e 0008 **Propostas** com momento de decisão definido (F07 e F04).
 - [ ] MFA confirmado em todas as contas listadas.
-- [ ] Ambiente instalado, versões registradas em `../arquitetura/stack-tecnologica.md`.
-- [ ] Repositório fora do OneDrive (ou risco aceito por escrito).
+- [x] Ambiente instalado, versões registradas em `../arquitetura/stack-tecnologica.md`.
+- [x] Repositório fora do OneDrive (ou risco aceito por escrito). → risco aceito (Q-12).
 - [ ] `LICENSE`, `.gitignore`, `.gitattributes` presentes; recursos de segurança do GitHub ativos.
 - [ ] `00-ESTADO-ATUAL.md` atualizado.
 

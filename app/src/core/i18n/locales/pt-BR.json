@@ -1,0 +1,107 @@
+{
+  "app": {
+    "name": "PapeAI",
+    "tagline": "Seu tutor de inglês com IA"
+  },
+  "shell": {
+    "skipToContent": "Pular para o conteúdo",
+    "home": "Início do PapeAI"
+  },
+  "language": {
+    "label": "Idioma da interface",
+    "pt-BR": "Português",
+    "en": "English"
+  },
+  "mascot": {
+    "placeholderLabel": "Mascote do PapeAI, um sagui (rascunho 2D)"
+  },
+  "home": {
+    "title": "Oi! Que bom ter você aqui.",
+    "intro": "Estamos construindo o PapeAI: um tutor de inglês que conversa com você, escuta palavra por palavra e monta a trilha para o que você quer fazer.",
+    "keyPromise": "Sua chave de API fica só no seu aparelho — e o código aberto mostra isso.",
+    "status": "Versão em construção. Ainda não há lições."
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "body": "Este endereço não existe no PapeAI.",
+    "back": "Voltar ao início"
+  },
+  "nav": {
+    "label": "Navegação principal",
+    "home": "Início",
+    "settings": "Configurações"
+  },
+  "ui": {
+    "close": "Fechar",
+    "dismissNotice": "Fechar aviso",
+    "notices": "Avisos"
+  },
+  "settings": {
+    "title": "Configurações",
+    "intro": "Ajuste o PapeAI do seu jeito. As escolhas ficam salvas neste aparelho.",
+    "languageTitle": "Idioma",
+    "languageDescription": "Em que idioma você quer ver menus e botões.",
+    "themeTitle": "Aparência",
+    "themeLegend": "Tema de cores",
+    "themeSystem": "Igual ao aparelho",
+    "themeSystemHint": "Segue o modo claro ou escuro do aparelho.",
+    "themeLight": "Claro",
+    "themeDark": "Escuro",
+    "themeNowLight": "Agora o app está no tema claro.",
+    "themeNowDark": "Agora o app está no tema escuro.",
+    "galleryLink": "Ver a galeria de componentes (só em desenvolvimento)"
+  },
+  "gallery": {
+    "title": "Galeria de componentes",
+    "intro": "Página só de desenvolvimento: mostra cada componente do design system. Ela não existe na versão publicada.",
+    "buttons": "Botões",
+    "primary": "Principal",
+    "secondary": "Secundário",
+    "ghost": "Discreto",
+    "danger": "Perigo",
+    "small": "Pequeno",
+    "large": "Grande",
+    "disabled": "Desativado",
+    "save": "Salvar",
+    "saving": "Salvando…",
+    "fields": "Campos de texto",
+    "nameLabel": "Seu nome",
+    "nameHint": "Como o tutor vai chamar você.",
+    "emailLabel": "E-mail",
+    "emailError": "Esse e-mail parece incompleto. Confira o que vem depois do @.",
+    "card": "Cartão",
+    "cardTitle": "Meta do dia",
+    "cardBody": "10 minutos de conversa. Constância é o superpoder do idioma.",
+    "dialog": "Diálogo",
+    "openDialog": "Abrir diálogo",
+    "dialogTitle": "Sair da lição?",
+    "dialogBody": "O que você já fez nesta lição fica salvo. Dá para continuar depois.",
+    "cancel": "Continuar na lição",
+    "confirm": "Sair",
+    "toasts": "Avisos",
+    "showInfo": "Mostrar dica",
+    "showSuccess": "Mostrar sucesso",
+    "showError": "Mostrar erro",
+    "infoMessage": "Dica: você pode mudar o tema nas Configurações.",
+    "successMessage": "Pronto! Sua escolha foi salva.",
+    "errorMessage": "Não consegui salvar. Sua conexão caiu? Tente de novo.",
+    "switch": "Alternador",
+    "switchLabel": "Legendas",
+    "switchDescription": "Mostrar o texto de tudo o que o tutor fala.",
+    "tabs": "Abas",
+    "tabsLabel": "Período",
+    "tabToday": "Hoje",
+    "tabWeek": "Semana",
+    "tabMonth": "Mês",
+    "tabTodayBody": "Hoje você conversou 5 minutos.",
+    "tabWeekBody": "Nesta semana foram 3 dias de prática.",
+    "tabMonthBody": "Neste mês você aprendeu 42 palavras novas.",
+    "radio": "Escolha única"
+  },
+  "appUpdate": {
+    "message": "Uma nova versão do PapeAI está disponível.",
+    "update": "Atualizar",
+    "updating": "Atualizando…",
+    "dismiss": "Agora não"
+  }
+}

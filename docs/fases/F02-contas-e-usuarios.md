@@ -3,7 +3,7 @@
 > **Status:** ⏳ Não iniciada
 
 ## Objetivo
-Login com **Google** e **e-mail com código**, primeiro acesso com termos/privacidade/18+, perfil mínimo, banco **v0** com RLS testado, **exportar** e **excluir** conta — tudo nos projetos Supabase de desenvolvimento e produção.
+Login com **Google** e **e-mail e senha**, primeiro acesso com termos/privacidade, perfil mínimo, banco **v0** com RLS testado, **exportar** e **excluir** conta — tudo nos projetos Supabase de desenvolvimento e produção.
 
 ## Documentos desta fase
 1. `../dados/modelo-de-dados.md`, `../dados/evolucao-e-migracoes.md`, `../dados/changelog-do-schema.md`
@@ -17,7 +17,7 @@ Login com **Google** e **e-mail com código**, primeiro acesso com termos/privac
 - F01 aprovada. ADR-0002, 0006, 0010 e 0011 aceitas. Q-13 respondida (Docker ou dev na nuvem).
 
 ## Escopo
-**Inclui:** projetos `papeai-dev` e `papeai-prod` (região São Paulo), Supabase CLI e migrações, schema v0 (`languages`, `language_variants`, `profiles`, `learning_profiles` mínimo, `notification_preferences`, `consent_records`, funções/gatilhos privados), testes de RLS, Google OAuth, e-mail OTP, Turnstile, telas de login/primeiro acesso, sair/sair de todos, Edge Functions `export-data`, `delete-account` e `account-deletion-request`, camada `core/data`.
+**Inclui:** projetos `papeai-dev` e `papeai-prod` (região São Paulo), Supabase CLI e migrações, schema v0 (`languages`, `language_variants`, `profiles`, `learning_profiles` mínimo, `notification_preferences`, `consent_records`, funções/gatilhos privados), testes de RLS, Google OAuth, e-mail e senha, Turnstile, telas de login/primeiro acesso, sair/sair de todos, Edge Functions `export-data`, `delete-account` e `account-deletion-request`, camada `core/data`.
 **Não inclui:** chave de API (F03), objetivos/nivelamento (F05), SMTP próprio (F09 — no dev usamos o padrão).
 
 ## Passos
@@ -39,13 +39,13 @@ Login com **Google** e **e-mail com código**, primeiro acesso com termos/privac
 
 ### D. Autenticação
 - [ ] Google Cloud: projeto, tela de consentimento, escopos mínimos, cliente web; segredo só no painel do Supabase.
-- [ ] Supabase Auth: Google (PKCE), e-mail OTP, Turnstile, redirect allowlist exata, confirmação de e-mail, rotação de refresh, limites revisados.
+- [ ] Supabase Auth: Google (PKCE), e-mail + senha (confirmação, recuperação, política de senha, senhas vazadas se disponível), Turnstile, redirect allowlist exata, confirmação de e-mail, rotação de refresh, limites revisados.
 - [ ] Telas: entrar/criar conta, digitar código, callback, erros com mensagens anti-enumeração.
 - [ ] Sessão: armazenamento (avaliar adaptador IndexedDB), eventos de login/logout, guard de rotas.
 - [ ] Sair (este aparelho) e sair de todos.
 
 ### E. Primeiro acesso
-- [ ] Textos provisórios de Termos e Privacidade (versão `draft`), aceite + 18+ → `consent_records` e `age_confirmed_at`.
+- [ ] Textos provisórios de Termos e Privacidade (versão `draft`), aceite → `consent_records` (maioridade é cláusula dos Termos, ADR-0010).
 - [ ] Bloqueio do app até o aceite.
 
 ### F. Meus dados
@@ -84,7 +84,7 @@ Seção F02 do checklist (RLS, grants, funções seguras, chave secreta só em f
 ## Portão de aprovação F02
 **Critérios:**
 - [ ] Login com Google e com código funcionando em dev e prod.
-- [ ] Primeiro acesso exige termos/privacidade/18+ e registra consentimento.
+- [ ] Primeiro acesso exige termos/privacidade e registra consentimento.
 - [ ] Testes de RLS cobrindo todas as tabelas, verdes; Security Advisor sem erros.
 - [ ] Exportar e excluir conta funcionando (inclusive limpeza local).
 - [ ] Documentos de dados e changelog atualizados.

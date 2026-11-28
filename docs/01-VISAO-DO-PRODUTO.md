@@ -49,7 +49,7 @@ Fontes: [Anthropic — API credits for subscribers](https://platform.claude.com/
 ## Jornada do usuário (de ponta a ponta)
 1. **Descobre** o PapeAI pelo site institucional (indexado em buscadores).
 2. **Abre o app** (web; depois Android).
-3. **Cria conta** com Google ou e-mail com código; aceita termos e privacidade; confirma ter 18+.
+3. **Cria conta** com Google ou e-mail e senha; aceita termos e privacidade.
 4. **Entende a chave:** tela educativa "o que é chave de API, quanto custa, como criar, como pôr limite de gasto, por que ela fica só aqui".
 5. **Cola a chave:** validação gratuita (não gasta tokens); a chave é cifrada no aparelho.
 6. **Onboarding:** idioma nativo, idioma-alvo, objetivos (vários), detalhes (profissão, país, data), meta diária, sotaque, modo do professor, legendas.

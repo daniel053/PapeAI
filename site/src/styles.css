@@ -1,0 +1,65 @@
+/* Provisional institutional site: plain CSS, system fonts, no JavaScript.
+   Colors follow docs/design/identidade-visual-e-marca.md. */
+:root {
+  --color-primary-600: #2f4ae0;
+  --color-primary-50: #eef1ff;
+  --color-ink-900: #0f172a;
+  --color-ink-600: #475569;
+  --color-line-200: #e2e8f0;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--color-ink-900);
+  background: #ffffff;
+}
+
+.page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 4rem 1.25rem;
+}
+
+.badge {
+  display: inline-block;
+  margin: 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: var(--color-primary-50);
+  color: var(--color-primary-600);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+h1 {
+  margin: 0.5rem 0;
+  font-size: 2.5rem;
+  color: var(--color-primary-600);
+}
+
+.lead {
+  font-size: 1.25rem;
+  color: var(--color-ink-600);
+}
+
+.pillars {
+  padding: 1rem 1.25rem 1rem 2.25rem;
+  border: 1px solid var(--color-line-200);
+  border-radius: 1rem;
+}
+
+a {
+  color: var(--color-primary-600);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-offset: 2px;
+}

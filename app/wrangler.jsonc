@@ -1,0 +1,25 @@
+// Cloudflare Workers — static assets only (no Worker script). PapeAI app origin.
+// Security headers (CSP, X-Robots-Tag, HSTS...) come from public/_headers, copied to dist/ by Vite.
+// Docs verified on 2026-11-26:
+//   https://developers.cloudflare.com/workers/static-assets/
+//   https://developers.cloudflare.com/workers/static-assets/headers/
+//   https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/
+//   https://developers.cloudflare.com/workers/previews/configuration/
+// Deployed by .github/workflows/deploy.yml (production on main, one Preview per PR).
+{
+  "name": "papeai-app",
+  // Cloudflare: use the current date for new projects. 2026-11-24 = release date of the
+  // pinned Wrangler 4.168.0 (deploy.yml), so it never runs ahead of the tool.
+  "compatibility_date": "2026-11-24",
+  "assets": {
+    "directory": "./dist",
+    // Unknown paths return /index.html with 200, so client-side routes work on reload.
+    "not_found_handling": "single-page-application",
+  },
+  // Free *.workers.dev subdomain until the project has its own domain (ADR-0004).
+  "workers_dev": true,
+  // Do not send Wrangler usage telemetry.
+  "send_metrics": false,
+  // Required by Worker Previews (may be empty): no preview-specific settings yet.
+  "previews": {},
+}

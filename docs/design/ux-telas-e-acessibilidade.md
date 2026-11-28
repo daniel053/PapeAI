@@ -4,8 +4,8 @@
 ```text
 Site institucional (indexável)          App (app.<dominio>, nunca indexado)
 ├─ Início                               ├─ Boas-vindas
-├─ Como funciona                        ├─ Entrar / Criar conta (Google · e-mail com código)
-├─ Segurança e transparência            ├─ Termos + Privacidade + 18+ (primeiro acesso)
+├─ Como funciona                        ├─ Entrar / Criar conta (Google · e-mail e senha)   
+├─ Segurança e transparência            ├─ Termos + Privacidade (primeiro acesso)    
 ├─ Perguntas frequentes                 ├─ "Sua chave, seu controle" (educativa) → Colar chave → Validação
 ├─ Privacidade · Termos                 ├─ Onboarding: idioma nativo → idioma-alvo → objetivos → detalhes
 └─ Solicitar exclusão de conta          │             → meta diária → sotaque → professor → legendas
@@ -67,6 +67,35 @@ Site institucional (indexável)          App (app.<dominio>, nunca indexado)
 - Texto escalável até 200% sem quebrar layout.
 - Tempo: nenhuma atividade com cronômetro obrigatório (desafios cronometrados são opcionais).
 - Verificação automática com axe (E2E) + teste manual com leitor de tela (TalkBack) antes do M3.
+
+## Casca do app (F01)
+- **Barra superior:** wordmark "PapeAI" (placeholder até o dono escolher o logo) + troca de idioma sempre visível (um toque: "Português" / "English"). O subtítulo some abaixo de 400 px para caber.
+- **Navegação:** Início · Configurações. No celular (< 640 px) fica numa **barra inferior** fixa, ao alcance do polegar (respeita a área segura do iPhone/Android). A partir de 640 px vai para a barra superior e a inferior some.
+- Item ativo: `aria-current="page"` (vem do `NavLink`) **e** sinais além da cor — negrito + pílula atrás do ícone (barra inferior) ou pílula + sublinhado (barra superior).
+- Ícones desenhados à mão em SVG (`app/src/ui/icons.tsx`), sempre com texto ao lado (ícone sozinho não é rótulo).
+- "Pular para o conteúdo" continua como primeiro item do Tab.
+- Avisos (toasts) aparecem acima da barra inferior no celular.
+
+## Configurações (F01)
+Rota `/configuracoes`. Por enquanto: **Idioma** (mesmos botões da barra superior) e **Aparência** (Igual ao aparelho · Claro · Escuro), com uma frase dizendo qual tema está ativo agora. Os outros itens do mapa de telas entram nas fases deles.
+
+## Componentes base (F01) — `app/src/ui/`
+Componentes **nativos**, sem biblioteca de UI (decisão do dono: nada de Radix/shadcn; o bloqueio de rolagem do Radix injeta `<style>`, o que quebra a CSP estrita). Eles recebem o texto **já traduzido** por props (o `ui` não importa `core`, nem o i18n).
+
+| Componente | Comportamento acessível |
+|---|---|
+| `Button` | Variantes principal/secundário/discreto/perigo; tamanhos sm/md/lg, todos com alvo ≥ 44 px. `loading` mostra spinner, usa `aria-disabled` + `aria-busy` (o foco não se perde) e ignora cliques. `buttonClassName()` dá o mesmo visual a links. |
+| `TextField` | Rótulo visível sempre; dica e erro ligados por `aria-describedby`; erro marca `aria-invalid` e vem com ícone + texto (não só borda vermelha). |
+| `Card` | Com título vira `<section>` rotulada pelo título; nível do título configurável para manter a hierarquia da página. |
+| `Dialog` | `<dialog>` nativo com `showModal()`: foco vai para dentro, o resto da página fica inerte, **Esc fecha**, rotulado pelo título (`aria-labelledby`), descrição por `aria-describedby`, botão × com rótulo, clique fora fecha (opcional), **foco volta ao botão que abriu**. Rolagem da página travada só com CSS (`html:has(dialog:modal)`). |
+| `ToastProvider` / `useToast` | Regiões *live* que já existem desde o início: educada para dica/sucesso, assertiva para erro. Some sozinho em 6 s (erro fica até fechar), **pausa** com mouse ou foco em cima, botão de fechar com rótulo, ícone por tipo. Animação só com `motion-safe`. Máximo 3 na tela. |
+| `Switch` | `<button role="switch" aria-checked>`; Espaço/Enter alternam; clicar no rótulo também; estado pela posição da bolinha + ✓, não só cor. |
+| `Tabs` | Padrão WAI-ARIA: tabindex itinerante, ←/→ (com volta), Home/End, ativação automática; painel com `role="tabpanel"` rotulado pela aba; aba ativa em negrito com sublinhado grosso. |
+| `RadioGroup` | `<fieldset>` + `<legend>` + rádios nativos (setas do teclado como o navegador define); caixa inteira clicável; nome acessível curto e descrição separada. |
+
+Regras comuns: foco visível (anel `primary-600`, 3:1+ nos dois temas), sem `style` inline nem `innerHTML`, transições de 150–200 ms desligadas por `prefers-reduced-motion`.
+
+**Galeria (só em desenvolvimento):** `/dev/componentes` mostra todos os componentes para testar com mouse, toque, teclado e leitor de tela nos dois temas. A rota só existe quando `import.meta.env.DEV` é verdadeiro; no build de produção ela e o código dela são removidos.
 
 ## Responsividade
 - **Mobile-first** (360–430 px de largura); tablet; desktop com coluna central (máx. ~720 px) e mascote ao lado.

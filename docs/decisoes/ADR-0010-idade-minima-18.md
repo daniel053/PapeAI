@@ -1,5 +1,5 @@
-# ADR-0010 — Idade mínima de 18 anos
-- **Status:** Proposta
+# ADR-0010 — Maioridade só nos Termos (sem perguntar idade)
+- **Status:** Aceita com ajuste (2026-11-26, Q-07)
 - **Data:** 2026-11-26
 - **Decisor:** dono do projeto · **Proposta por:** IA
 - **Requisitos relacionados:** PRD-11, CON-06, PRIV-*
@@ -13,8 +13,8 @@ Apps de idiomas atraem menores. Porém: (1) o titular de uma chave de API da Ant
 | **18+** | Coerente com o titular da chave; conformidade mais simples | Exclui adolescentes |
 | 13+/16+ com consentimento parental | Público maior | Verificação de idade, consentimento parental, regras específicas — complexo para dev solo |
 
-## Decisão (proposta)
-**18+**, com autodeclaração no primeiro acesso (registrada em `consent_records` e `profiles.age_confirmed_at`), termos explícitos, classificação etária adequada nas lojas e nenhum marketing direcionado a menores.
+## Decisão
+**Não perguntar a idade de ninguém** (decisão do dono). O público principal são devs (projeto de portfólio). Os Termos de uso dizem que o serviço é para maiores de idade, coerente com a exigência da Anthropic para o titular da chave de API. Aceitar os Termos no primeiro acesso já registra isso em `consent_records`; **não há** pergunta, caixa "tenho 18+" nem coluna `age_confirmed_at`. Sem marketing direcionado a menores; classificação etária adequada nas lojas (F10).
 
 ## Consequências
 - ➕ Conformidade mais simples e coerente com o modelo BYOK.

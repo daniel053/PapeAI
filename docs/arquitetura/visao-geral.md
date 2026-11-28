@@ -77,7 +77,7 @@ sequenceDiagram
 1. Usuário toca "Entrar com Google" → redirecionamento OAuth com PKCE para o Google via Supabase Auth.
 2. Volta para `app.<domínio>/auth/callback` (URL exata na allowlist do Supabase).
 3. Supabase emite JWT de acesso (curto) + refresh token (rotacionado).
-4. Primeiro login: um gatilho no banco cria `profiles`; o app mostra termos, privacidade e confirmação 18+.
+4. Primeiro login: um gatilho no banco cria `profiles`; o app mostra termos e privacidade.
 
 ### 3. Sincronização de progresso
 1. O app grava primeiro localmente (IndexedDB) e coloca a mudança numa fila.
@@ -104,3 +104,10 @@ sequenceDiagram
 | `mascot/` | Cena 3D | carregamento GLB, máquina de estados, animações |
 
 Detalhes e regras de import: `estrutura-de-pastas-e-modulos.md`.
+
+## PWA (instalação e atualização)
+- **Manifest** gerado pelo `vite-plugin-pwa` a partir de `app/src/platform/web/pwa/pwa-config.ts` (nome, cores dos tokens, ícones 192/512 e 512 *maskable*).
+- **Ícones:** a arte-mestre é `tooling/icons/mascot-face.svg`; `pnpm --filter ./app icons` gera `app/public/favicon.svg` e os PNG em `app/public/icons/` (sem dependências, só Node). Um teste falha se os PNG ficarem desatualizados em relação à arte-mestre.
+- **Service worker** (Workbox `generateSW`): guarda no aparelho **só os arquivos estáticos do build** (js, css, html, fontes latinas, svg, png, manifest). Nada de cache em tempo de execução, nada de outra origem, nada de API. Navegações caem no `index.html` (SPA), exceto `/.well-known/*` e caminhos com extensão (ex.: `robots.txt`).
+- **Atualização com aviso:** uma versão nova fica "esperando" até o usuário tocar em **Atualizar** no aviso (`features/app-update`); a página recarrega já na versão nova. "Agora não" adia até todas as abas serem fechadas.
+- **CSP:** o registro é importado do código (`virtual:pwa-register`), sem `<script>` inline; funciona com `script-src 'self'` e `worker-src 'self'`.

@@ -2,7 +2,16 @@
 
 > Requisitos MAS-01 a MAS-08. O mascote é **renderizado no aparelho**: não consome tokens. A IA só manda um campo curto (`mascot_emotion`) que escolhe a animação.
 
-## Candidatos (decisão do dono — Q-02)
+## Decisão (Q-02, 2026-11-26): **macaco-sagui** ✅
+| Aspecto | Notas |
+|---|---|
+| Por que combina | Fauna brasileira, pequeno e "fofo", rosto muito expressivo; é primata, então tem **mãos**: `thumbs_up`, `facepalm`, `wave_hello` e gestos saem naturais, sem pose forçada |
+| Traços marcantes para a silhueta | Tufos brancos nas orelhas (sagui-de-tufos-brancos), mancha clara na testa, cauda longa listrada |
+| Cuidados de modelagem | Tufos e cauda consomem triângulos e ossos: usar cartões/formas simples e ≤ 4 ossos na cauda para caber no orçamento abaixo |
+| Cuidados de marca | Não lembrar macacos de mascotes conhecidos (jogos, desenhos); paleta e tufos devem ser a assinatura própria |
+| Cuidado de mensagem | Nunca sugerir o sagui como animal de estimação (posse de animal silvestre exige autorização no Brasil) |
+
+## Candidatos avaliados
 | Animal | Por que combina | Cuidados |
 |---|---|---|
 | **Papagaio** | Fala e imita sons (repetir, *shadowing*); fauna brasileira; asas gesticulam; talvez combine com "Pape" | "Papagaiar" = repetir sem entender → virar piada a favor ("aqui o papagaio entende!"); não lembrar a coruja verde |

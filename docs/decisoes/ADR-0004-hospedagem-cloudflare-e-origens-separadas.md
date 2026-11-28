@@ -1,5 +1,5 @@
 # ADR-0004 — Hospedagem Cloudflare e origens separadas (site x app)
-- **Status:** Proposta
+- **Status:** Aceita (2026-11-26)
 - **Data:** 2026-11-26
 - **Decisor:** dono do projeto · **Proposta por:** IA
 - **Requisitos relacionados:** SEG-03, SEG-04, SEG-06, SEG-07, RNF-01
@@ -15,7 +15,7 @@ O Supabase não hospeda o frontend. Precisamos de hospedagem estática gratuita 
 | C. Vercel (Hobby) | Sim | Plano gratuito voltado a uso não comercial |
 | D. GitHub Pages | **Não** (só meta tags; `frame-ancestors` não funciona por meta) | Insuficiente para a nossa CSP |
 
-## Decisão (proposta)
+## Decisão
 **Cloudflare**, com **duas origens**:
 - `https://<dominio>` → site institucional (indexável).
 - `https://app.<dominio>` → aplicativo (`noindex`, CSP máxima).

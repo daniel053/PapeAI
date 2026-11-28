@@ -1,5 +1,5 @@
 # ADR-0011 — Dados sensíveis ficam no aparelho por padrão
-- **Status:** Proposta
+- **Status:** Aceita (2026-11-26)
 - **Data:** 2026-11-26
 - **Decisor:** dono do projeto · **Proposta por:** IA
 - **Requisitos relacionados:** PRIV-02, PRIV-03, NIV-09, VOZ-09, BYOK-06
@@ -14,7 +14,7 @@ Conversas com o tutor podem conter detalhes da vida da pessoa; áudio é dado pe
 | Tudo sincronizado no servidor | Conveniência multi-aparelho | Risco e responsabilidade altos |
 | Sincronização opcional cifrada de ponta a ponta | Melhor dos dois mundos | Complexa — fica para depois (BL-04) |
 
-## Decisão (proposta)
+## Decisão
 | Fica **só no aparelho** | Vai para o **servidor** |
 |---|---|
 | Chave de API, transcrições das conversas e do nivelamento, áudio, uso de tokens, cache de lições | Perfil mínimo, objetivos, nível e evidências curtas, progresso, vocabulário (SRS), memória resumida do tutor (visível/editável), preferências, consentimentos |

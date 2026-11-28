@@ -9,19 +9,19 @@ Como responder: no chat ("Q-03: tenho o Max") ou escrevendo em **Sua resposta**.
 - **Pergunta:** "PapeAI" é o nome definitivo? O que ele significa para você (papo? papear? papagaio?)
 - **Por que importa:** marca, domínio, mascote e registro de marca.
 - **Recomendação:** manter "PapeAI" como nome de trabalho e, antes da F11, checar domínio (`.com.br`, `.app`), INPI (classes 9 e 41) e nomes nas lojas.
-- **Sua resposta:** _
+- **Sua resposta:** ✅ **PapeAI** é o nome (respondido em 2026-11-26 como "PapeAi"; grafia oficial do logo a confirmar na trilha de arte). Significado: não informado.
 
 ### Q-02 — Animal do mascote **[bloqueia F00]**
 - **Pergunta:** qual animal? Opções (com prós e contras em `design/mascote-3d.md`): **papagaio** (fala e repete — combina com exercícios de repetição e talvez com o nome "Pape"), **capivara** (calma, querida, contraste engraçado com o modo sem filtro), **lobo-guará**, **bicho-preguiça** (piada pronta para o "falar mais devagar"), **tamanduá**, outro.
 - **Restrição:** evitar coruja verde e qualquer coisa parecida com mascotes de apps conhecidos.
 - **Recomendação:** papagaio, se "Pape" vier de papagaio; senão, capivara.
-- **Sua resposta:** _
+- **Sua resposta:** ✅ **Macaco-sagui** (2026-11-26). Detalhes em `design/mascote-3d.md`.
 
 ### Q-03 — Seu plano do Claude **[bloqueia F00]**
 - **Pergunta:** você tem Pro, Max, Ultra ou Team?
 - **Por que importa:** nas regras atuais, Max, Ultra e Team incluem créditos mensais de API (Pro não). Isso define seu custo de desenvolvimento e como explicamos ao usuário.
 - **Recomendação:** criar uma organização na Claude Console só para o PapeAI, com uma chave de desenvolvimento e **limite de gasto baixo**.
-- **Sua resposta:** _
+- **Sua resposta:** ✅ **Pro** (2026-11-26): sem créditos de API inclusos. O desenvolvimento usa créditos pré-pagos numa organização própria da Console, com limite de gasto baixo. Créditos: o dono compra quando precisar; a IA avisa antes e o app mostra erro claro na tela quando faltar saldo.
 
 ### Q-04 — Orçamento mínimo aceitável **[bloqueia F00]**
 - **Pergunta:** você aceita estes custos mínimos (quando chegar a hora)?
@@ -30,29 +30,29 @@ Como responder: no chat ("Q-03: tenho o Max") ou escrevendo em **Sua resposta**.
   - Google Play: taxa única de US$ 25 — só na F10.
   - Apple: US$ 99/ano — só se formos para iOS (F12).
 - **Recomendação:** começar com R$ 0 (F00–F08) e decidir o domínio no início da F09.
-- **Sua resposta:** _
+- **Sua resposta:** ✅ (2026-11-26) Créditos de API: o dono compra quando precisar. Demais custos (domínio, Google Play, Apple) decididos na fase em que entram (F09/F10/F12).
 
 ### Q-05 — Stack: web primeiro + Capacitor **[bloqueia F00]**
 - **Pergunta:** aprova a ADR-0001 (React + Vite como PWA; depois Capacitor gera o app Android com o mesmo código)?
 - **Alternativa:** Expo/React Native (mais "nativo", porém 3D e modelos de voz no aparelho ficam mais difíceis).
 - **Recomendação:** aprovar a ADR-0001.
-- **Sua resposta:** _
+- **Sua resposta:** ✅ **Aprovada** (2026-11-26) após explicação detalhada: web (React + Vite, PWA) + Capacitor. ADR-0001 aceita.
 
 ### Q-06 — Login **[bloqueia F00]**
 - **Pergunta:** aprova Google + e-mail com código de 6 dígitos (sem senha) — ADR-0006?
 - **Recomendação:** aprovar. Sem senhas não há senha para vazar nem para esquecer.
-- **Sua resposta:** _
+- **Sua resposta:** ✅ **Alterada** (2026-11-26): **Google + e-mail e senha**, para dar versatilidade e não criar barreira. ADR-0006 reescrita.
 
 ### Q-07 — Idade mínima **[bloqueia F00]**
 - **Pergunta:** aprova 18+ (ADR-0010)?
 - **Recomendação:** aprovar. O titular da chave de API já precisa ser maior de idade na Console.
-- **Sua resposta:** _
+- **Sua resposta:** ✅ (2026-11-26) Não perguntar idade a ninguém. Público principal: devs (projeto de portfólio). A maioridade fica só como cláusula dos Termos, coerente com a exigência da Anthropic para o titular da chave. ADR-0010 ajustada.
 
 ### Q-08 — Licença **[bloqueia F00]**
 - **Pergunta:** qual licença para o código? E a marca/mascote?
 - **Opções:** MIT, Apache-2.0 (permissivas) ou AGPL-3.0 (obriga quem hospedar versão modificada a publicar o código).
 - **Recomendação (ADR-0005):** código **Apache-2.0**; conteúdo pedagógico **CC BY-SA 4.0**; nome, logo e mascote **com todos os direitos reservados** (qualquer um pode copiar o código, mas não a identidade).
-- **Sua resposta:** _
+- **Sua resposta:** ✅ **GPL-3.0** (2026-11-26), aplicada como GPL-3.0-or-later. Conteúdo CC BY-SA 4.0, docs CC BY 4.0, marca reservada (mantidos da proposta). ADR-0005 aceita.
 
 ### Q-09 — Limites do modo "sem filtro" (F04)
 - **Pergunta:** até onde vai o "sem filtro"? Palavrão leve sim ou não? Nome do modo ("Sem filtro", "Brutal", "Sincerão")?
@@ -73,7 +73,7 @@ Como responder: no chat ("Q-03: tenho o Max") ou escrevendo em **Sua resposta**.
 - **Pergunta:** podemos mover o repositório para fora do OneDrive (ex.: `C:\dev\PapeAI`)?
 - **Por que importa:** o OneDrive tenta sincronizar `node_modules` (dezenas de milhares de arquivos), trava arquivos durante builds e enviaria arquivos `.env.local` com segredos para a nuvem.
 - **Recomendação:** mover antes da F01 (passo a passo em `processo/ambiente-de-desenvolvimento-windows.md`).
-- **Sua resposta:** _
+- **Sua resposta:** ✅ **Risco aceito por escrito** (2026-11-26): a sincronização do OneDrive está desativada nesta máquina; o repositório fica onde está. Se a sincronização for reativada, mover o repositório antes.
 
 ### Q-13 — Docker no seu PC (F02)
 - **Pergunta:** seu PC aguenta Docker Desktop (para rodar o Supabase localmente)?
